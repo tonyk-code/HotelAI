@@ -8,7 +8,7 @@ export function Navigation() {
   const navLinks = [
     { name: "Home", href: "#hero" },
     { name: "Categories", href: "#categories" },
-    { name: "Hotels", href: "#hotels" },
+    { name: "Rooms", href: "#rooms" },
     { name: "Services", href: "#services" },
     { name: "Stats", href: "#stats" },
     { name: "Reviews", href: "#reviews" },

@@ -1,6 +1,6 @@
 import { Categories } from "./Categories";
 import { ExploreHotels } from "./ExploreHotels";
-import { FeaturedHotels } from "./FeaturedHotels";
+import { FeaturedRooms } from "./FeaturedRooms";
 import { Footer } from "./Footer";
 import { Hero } from "./Hero";
 import { Navigation } from "./Navigation";
@@ -11,12 +11,10 @@ import { TopBar } from "./TopBar";
 
 export default function LandingPage() {
   return (
-    /* THIS IS THE KEY PART */
     <div className="min-h-screen bg-white">
       <TopBar />
       <Navigation />
 
-      {/* The 'id' must match the 'href' in your navLinks array */}
       <section id="hero">
         <Hero />
       </section>
@@ -25,8 +23,8 @@ export default function LandingPage() {
         <Categories />
       </section>
 
-      <section id="hotels">
-        <FeaturedHotels />
+      <section id="rooms">
+        <FeaturedRooms />
       </section>
 
       <section id="services">
