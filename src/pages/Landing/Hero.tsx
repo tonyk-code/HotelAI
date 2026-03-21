@@ -1,9 +1,10 @@
 import { motion } from "framer-motion";
-import { Sparkles, ArrowRight, Play } from "lucide-react";
+import { Sparkles } from "lucide-react";
+import type { Variant } from "framer-motion";
 
 export function Hero() {
   // Container variants to stagger children
-  const containerVars = {
+  const containerVars: Variant = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -11,7 +12,7 @@ export function Hero() {
     },
   };
 
-  const itemVars = {
+  const itemVars:Variant = {
     hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,

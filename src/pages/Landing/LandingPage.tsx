@@ -11,17 +11,38 @@ import { TopBar } from "./TopBar";
 
 export default function LandingPage() {
   return (
+    /* THIS IS THE KEY PART */
     <div className="min-h-screen bg-white">
       <TopBar />
       <Navigation />
-      <Hero />
-      <Categories />
-      <FeaturedHotels />
-      <PremiumServices />
+
+      {/* The 'id' must match the 'href' in your navLinks array */}
+      <section id="hero">
+        <Hero />
+      </section>
+
+      <section id="categories">
+        <Categories />
+      </section>
+
+      <section id="hotels">
+        <FeaturedHotels />
+      </section>
+
+      <section id="services">
+        <PremiumServices />
+      </section>
       <ExploreHotels />
-      <StatsVideo />
-      <Reviews />
-      <Footer/>
+
+      <section id="stats">
+        <StatsVideo />
+      </section>
+
+      <section id="reviews">
+        <Reviews />
+      </section>
+
+      <Footer />
     </div>
   );
 }
