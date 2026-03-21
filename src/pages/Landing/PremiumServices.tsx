@@ -63,7 +63,7 @@ export function PremiumServices() {
           </h2>
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-4 h-150">
+        <div className="flex flex-col lg:flex-row gap-4 h-200 lg:h-150">
           {services.map((service, index) => {
             const isHovered = hoveredIndex === index;
 

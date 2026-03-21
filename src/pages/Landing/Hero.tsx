@@ -21,7 +21,6 @@ export function Hero() {
 
   return (
     <section id="home" className="relative min-h-[90vh] flex items-center bg-[#EAE8FF] overflow-hidden">
-      {/* 1. Background Animation (Novelty) */}
       <motion.div
         initial={{ x: "100%" }}
         animate={{ x: 0 }}
@@ -39,7 +38,7 @@ export function Hero() {
         <div className="space-y-6">
           <motion.div
             variants={itemVars}
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#B0D7FF]/30 border border-[#B0D7FF]/50"
+            className="inline-flex items-center gap-2 px-3 py-1 mt-5 lg:mt-0 rounded-full bg-[#B0D7FF]/30 border border-[#B0D7FF]/50"
           >
             <Sparkles className="w-4 h-4 text-[#2D3142]" />
             <span className="text-[12px] font-bold tracking-widest text-[#2D3142] uppercase">

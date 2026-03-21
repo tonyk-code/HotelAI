@@ -1,6 +1,5 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Star, Quote, ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
+import { motion } from "framer-motion";
+import { Star, Quote, Sparkles } from "lucide-react";
 const reviews = [
   {
     image:
@@ -36,31 +35,31 @@ const reviews = [
   },
 ];
 
-
-
 export function Reviews() {
   return (
     <section className="py-20 px-6 bg-[#EAE8FF]/50">
       <div className="max-w-4xl mx-auto">
-        
-        {/* Header */}
         <div className="mb-20 text-center">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#B0D7FF]/20 border border-[#B0D7FF]/30 text-[#2D3142] mb-4">
             <Sparkles className="w-3.5 h-3.5" />
-            <span className="text-[10px] font-bold tracking-[0.2em] uppercase">User Logs</span>
+            <span className="text-[10px] font-bold tracking-[0.2em] uppercase">
+              User Logs
+            </span>
           </div>
           <h2 className="text-4xl md:text-6xl font-bold text-[#2D3142] tracking-tighter">
-            Guest <span className="text-[#ADACB5] font-light italic">Perspectives</span>
+            Guest{" "}
+            <span className="text-[#ADACB5] font-light italic">
+              Perspectives
+            </span>
           </h2>
         </div>
 
-        {/* The Stack Container */}
         <div className="relative flex flex-col gap-10">
           {reviews.map((review, index) => (
-            <div 
-              key={index} 
+            <div
+              key={index}
               className="sticky top-32 w-full"
-              style={{ paddingTop: `${index * 20}px` }} // Incremental offset so they don't perfectly overlap
+              style={{ paddingTop: `${index * 20}px` }}
             >
               <motion.div
                 initial={{ opacity: 0, y: 50 }}
@@ -69,27 +68,32 @@ export function Reviews() {
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                 className="bg-white rounded-[40px] p-10 md:p-16 shadow-[0_-20px_50px_-15px_rgba(45,49,66,0.1)] border border-[#EAE8FF] flex flex-col md:flex-row gap-10 items-center"
               >
-                {/* Reviewer Info */}
                 <div className="w-full md:w-1/3 text-center md:text-left">
                   <div className="relative inline-block mb-4">
                     <img
                       src={review.image}
                       alt={review.name}
-                      className="w-24 h-24 rounded-[32px] object-cover border-4 border-[#EAE8FF]"
+                      className="w-24 h-24 rounded-4xl object-cover border-4 border-[#EAE8FF]"
                     />
                     <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-[#2D3142] rounded-full flex items-center justify-center text-white">
                       <Quote className="w-4 h-4 fill-current" />
                     </div>
                   </div>
-                  <h3 className="text-xl font-bold text-[#2D3142] uppercase tracking-tighter">{review.name}</h3>
-                  <p className="text-sm font-bold text-[#ADACB5] uppercase tracking-widest">{review.role}</p>
+                  <h3 className="text-xl font-bold text-[#2D3142] uppercase tracking-tighter">
+                    {review.name}
+                  </h3>
+                  <p className="text-sm font-bold text-[#ADACB5] uppercase tracking-widest">
+                    {review.role}
+                  </p>
                 </div>
 
-                {/* Review Text */}
                 <div className="w-full md:w-2/3">
                   <div className="flex gap-1 mb-4 justify-center md:justify-start">
                     {[...Array(review.rating)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 text-[#B0D7FF] fill-current" />
+                      <Star
+                        key={i}
+                        className="w-4 h-4 text-[#B0D7FF] fill-current"
+                      />
                     ))}
                   </div>
                   <p className="text-xl md:text-2xl text-[#2D3142] leading-relaxed font-light italic">
@@ -101,7 +105,6 @@ export function Reviews() {
           ))}
         </div>
 
-        {/* Spacer to allow the last card to pin for a while */}
         <div className="h-[10vh]" />
       </div>
     </section>

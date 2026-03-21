@@ -91,24 +91,23 @@ export function ExploreHotels() {
           </p>
         </div>
 
-        {/* Filters */}
-        <div className="flex justify-center mb-12">
-          <div className="inline-flex bg-[#EAE8FF]/50 rounded-full p-1 border border-[#ADACB5]/20">
-            {filters.map((filter) => (
-              <button
-                key={filter}
-                onClick={() => setActiveFilter(filter)}
-                className={`px-5 py-2 text-sm font-medium rounded-full transition-colors duration-300 ${
-                  activeFilter === filter
-                    ? "bg-[#2D3142] text-white shadow-md"
-                    : "text-[#2D3142]/70 hover:text-[#2D3142]"
-                }`}
-              >
-                {filter}
-              </button>
-            ))}
-          </div>
-        </div>
+        <div className="flex justify-center mb-12 px-4">
+  <div className="flex flex-wrap justify-center bg-[#EAE8FF]/50 rounded-full p-2 border border-[#ADACB5]/20 gap-2 max-w-full">
+    {filters.map((filter) => (
+      <button
+        key={filter}
+        onClick={() => setActiveFilter(filter)}
+        className={`px-4 sm:px-5 py-2 text-sm sm:text-base font-medium rounded-full transition-colors duration-300 whitespace-nowrap ${
+          activeFilter === filter
+            ? "bg-[#2D3142] text-white shadow-md"
+            : "text-[#2D3142]/70 hover:text-[#2D3142]"
+        }`}
+      >
+        {filter}
+      </button>
+    ))}
+  </div>
+</div>
 
         {/* Property Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
