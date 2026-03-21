@@ -1,10 +1,8 @@
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { Sparkles } from "lucide-react";
-import type { Variant } from "framer-motion";
 
 export function Hero() {
-  // Container variants to stagger children
-  const containerVars: Variant = {
+  const containerVars: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -12,7 +10,7 @@ export function Hero() {
     },
   };
 
-  const itemVars:Variant = {
+  const itemVars: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
@@ -22,7 +20,7 @@ export function Hero() {
   };
 
   return (
-    <section className="relative min-h-[90vh] flex items-center bg-[#EAE8FF] overflow-hidden">
+    <section id="home" className="relative min-h-[90vh] flex items-center bg-[#EAE8FF] overflow-hidden">
       {/* 1. Background Animation (Novelty) */}
       <motion.div
         initial={{ x: "100%" }}
@@ -45,7 +43,7 @@ export function Hero() {
           >
             <Sparkles className="w-4 h-4 text-[#2D3142]" />
             <span className="text-[12px] font-bold tracking-widest text-[#2D3142] uppercase">
-              Next-Gen Hospitality
+              Luxury Retreats
             </span>
           </motion.div>
 
@@ -53,9 +51,9 @@ export function Hero() {
             variants={itemVars}
             className="text-5xl lg:text-7xl font-bold text-[#2D3142] leading-[1.1] tracking-tight"
           >
-            Redefining <br />
+            Your Next <br />
             <span className="text-[#ADACB5] font-light italic text-6xl lg:text-8xl">
-              Luxury Stays
+              Dream Stay
             </span>
           </motion.h1>
 
@@ -63,28 +61,27 @@ export function Hero() {
             variants={itemVars}
             className="text-lg text-[#2D3142]/70 max-w-lg leading-relaxed"
           >
-            Experience a curated selection of world-class hotels enhanced by
-            intuitive AI that anticipates your every need.
+            Explore top-rated hotels and cozy getaways. Find the perfect room for 
+            your trip, whether it’s city adventures or peaceful escapes.
           </motion.p>
 
           <motion.div variants={itemVars} className="flex flex-wrap gap-4">
             <button className="bg-[#2D3142] text-[#EAE8FF] px-8 py-4 rounded-full font-bold shadow-xl hover:bg-[#3d4259] transition-all">
-              Book Your Experience
+              Book Now
             </button>
           </motion.div>
         </div>
 
-        {/* 2. Image "Soft Scale" Animation (Aesthetics) */}
         <motion.div
           initial={{ opacity: 0, scale: 1.1, filter: "blur(10px)" }}
           animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
           transition={{ duration: 1.5, ease: "easeOut" }}
           className="relative"
         >
-          <div className="relative aspect-[4/5] rounded-[40px] overflow-hidden border-[12px] border-white shadow-2xl">
+          <div className="relative aspect-4/5 rounded-[40px] overflow-hidden border-12 border-white shadow-2xl">
             <img
               src="https://images.unsplash.com/photo-1694967832949-09984640b143?auto=format&fit=crop&q=80&w=800"
-              alt="Luxury"
+              alt="Serene mountain resort room with a view"
               className="w-full h-full object-cover"
             />
           </div>
