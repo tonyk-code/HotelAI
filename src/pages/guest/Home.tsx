@@ -39,7 +39,7 @@ export function Home() {
   const upcomingEvents = events.slice(0, 2);
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] pb-12">
+    <div className="min-h-screen  pb-12 p-6  md:p-10">
       <div className="relative h-[45vh] md:h-[50vh] overflow-hidden rounded-[3.5rem] shadow-2xl">
         <img
           src="https://images.unsplash.com/photo-1744782996368-dc5b7e697f4c?q=80&w=1080&auto=format&fit=crop"

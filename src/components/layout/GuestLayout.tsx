@@ -20,7 +20,7 @@ export function GuestLayout() {
   };
 
   return (
-    <div className="flex flex-col md:flex-row h-screen bg-[#F8FAFC] antialiased">
+    <div className="flex flex-col md:flex-row h-screen bg-linear-to-br from-[#F8FAFC] via-[#F1F5F9] to-white antialiased">
       <nav className="fixed bottom-0 left-0 right-0 md:top-0 md:bottom-0 md:right-auto md:w-24 z-50 flex items-center justify-center pointer-events-none">
         <div className="
           pointer-events-auto
@@ -80,8 +80,8 @@ export function GuestLayout() {
         </div>
       </nav>
 
-      <main className="flex-1 overflow-y-auto pb-15 md:pb-0 md:pl-28 transition-all duration-500">
-        <div className="p-6  md:p-10">
+      <main className="flex-1 pb-15 md:pb-0 md:pl-28 transition-all duration-500 overflow-y-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+        <div>
           <Outlet />
         </div>
       </main>

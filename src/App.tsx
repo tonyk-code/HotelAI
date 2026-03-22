@@ -8,7 +8,7 @@ import RoomDetails from "./pages/guest/RoomDetails";
 import {Services} from "./pages/guest/Services";
 import {Events} from "./pages/guest/Events";
 import {Chat} from "./pages/guest/Chat";
-import Profile from "./pages/guest/Profile";
+import {Profile} from "./pages/guest/Profile";
 
 function App() {
   return (

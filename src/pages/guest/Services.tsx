@@ -74,7 +74,7 @@ export function Services() {
   };
 
   return (
-    <div className="min-h-screen pb-20 relative">
+    <div className="min-h-screen pb-20 relative ">
       {/* Render Custom Toast if active */}
       {toast && (
         <CustomToast 

@@ -78,7 +78,7 @@ export function Chat() {
 
   return (
     <div className="h-screen flex flex-col text-[#1E3A8A] font-sans">
-      <nav className="px-6 h-14 border-b border-slate-100 flex items-center justify-between shrink-0 bg-white/50 backdrop-blur-md">
+      <nav className="px-6 h-14 mt-4 mx-auto w-[95%] rounded-4xl border border-slate-100 flex items-center justify-between shrink-0 bg-white/50 backdrop-blur-md">
         <div className="flex items-center gap-2">
           <Sparkles className="w-4 h-4 text-[#3B82F6]" />
           <h1 className="text-xs font-bold uppercase tracking-tight">
@@ -95,7 +95,7 @@ export function Chat() {
 
       <div
         ref={scrollRef}
-        className="flex-1 overflow-y-auto pt-8 pb-4 space-y-8"
+        className="flex-1 overflow-y-auto pt-8 pb-4 space-y-8 overflow-y-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
       >
         <div className="max-w-3xl mx-auto px-6 space-y-8">
           {messages.map((m: any) => (
