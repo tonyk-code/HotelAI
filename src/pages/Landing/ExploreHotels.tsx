@@ -114,10 +114,10 @@ export function ExploreHotels() {
           {filteredProperties.map((property) => (
             <div
               key={property.name}
-              className="group cursor-pointer rounded-[32px] overflow-hidden shadow-sm hover:shadow-2xl transition-shadow"
+              className="group cursor-pointer rounded-4xl overflow-hidden shadow-sm hover:shadow-2xl transition-shadow"
             >
               {/* Image */}
-              <div className="relative aspect-[4/3] overflow-hidden mb-6 rounded-[32px]">
+              <div className="relative aspect-4/3 overflow-hidden mb-6 rounded-4xl">
                 <img
                   src={property.image}
                   alt={property.name}

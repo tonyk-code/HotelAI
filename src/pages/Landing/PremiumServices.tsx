@@ -126,7 +126,7 @@ export function PremiumServices() {
                         animate={{ opacity: 1 }}
                         className="h-full flex items-center justify-center lg:justify-start"
                       >
-                        <h3 className="text-xl font-bold whitespace-nowrap lg:rotate-[-90deg] origin-center tracking-tighter opacity-70 group-hover:opacity-100 transition-opacity">
+                        <h3 className="text-xl font-bold whitespace-nowrap lg:-rotate-90 origin-center tracking-tighter opacity-70 group-hover:opacity-100 transition-opacity">
                           {service.title}
                         </h3>
                       </motion.div>
