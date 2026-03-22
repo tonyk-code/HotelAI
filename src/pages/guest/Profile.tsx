@@ -8,18 +8,8 @@ import {
   CreditCard,
   ChevronRight,
 } from "lucide-react";
+import Card from "../../components/ui/Card";
 
-// --- Local UI Components ---
-const ProfileCard = ({ children, title, className = "" }: any) => (
-  <div
-    className={`bg-white border border-slate-100 rounded-[2rem] p-8 shadow-sm ${className}`}
-  >
-    {title && (
-      <h2 className="text-xl font-bold text-[#1E3A8A] mb-6">{title}</h2>
-    )}
-    {children}
-  </div>
-);
 
 const InfoTile = ({ icon: Icon, label, value }: any) => (
   <div className="flex items-center gap-4 p-4 bg-slate-50/50 rounded-2xl border border-slate-100/50 transition-all hover:bg-slate-50">
@@ -53,7 +43,7 @@ export function Profile() {
           {/* Left Column: Personal Info & Preferences */}
           <div className="lg:col-span-2 space-y-8">
             {/* User Identity Card */}
-            <ProfileCard>
+            <Card variant="profile" title="My Profile">
               <div className="flex flex-col md:flex-row items-center gap-8 mb-10">
                 <div className="relative group">
                   <div className="w-28 h-28 bg-[#1E3A8A] rounded-[2.5rem] flex items-center justify-center shadow-2xl shadow-blue-900/20 transition-transform group-hover:scale-105">
@@ -100,10 +90,10 @@ export function Profile() {
                   value="Visa ending in 8842"
                 />
               </div>
-            </ProfileCard>
+            </Card>
 
             {/* Preferences Section */}
-            <ProfileCard title="Personal Preferences">
+            <Card title="Personal Preferences" variant="profile">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="flex items-start gap-4">
                   <div className="w-12 h-12 bg-rose-50 rounded-2xl flex items-center justify-center shrink-0">
@@ -135,7 +125,7 @@ export function Profile() {
                   </div>
                 </div>
               </div>
-            </ProfileCard>
+            </Card>
           </div>
 
           {/* Right Column: Current Booking Summary */}

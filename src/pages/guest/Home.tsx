@@ -9,29 +9,8 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { rooms, events } from "../../data/mockData";
-
-const Card = ({ children, className = "", onClick }: any) => (
-  <div
-    onClick={onClick}
-    className={`bg-white border border-gray-100 rounded-4xl shadow-[0_8px_30px_rgba(0,0,0,0.02)] transition-all duration-500 ${onClick ? "cursor-pointer hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)] hover:-translate-y-1 active:scale-[0.98]" : ""} ${className}`}
-  >
-    {children}
-  </div>
-);
-
-const ActionButton = ({ icon: Icon, label, onClick }: any) => (
-  <button
-    onClick={onClick}
-    className="flex flex-col items-center justify-center gap-3 h-32 bg-white border border-gray-100 rounded-4xl transition-all duration-300 hover:border-[#3B82F6]/30 hover:bg-[#3B82F6]/5 active:scale-95 group"
-  >
-    <div className="p-3 bg-gray-50 rounded-xl group-hover:bg-[#3B82F6]/10 transition-colors">
-      <Icon className="w-6 h-6 text-[#1E3A8A] stroke-[1.5px]" />
-    </div>
-    <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-[#64748B] group-hover:text-[#1E3A8A]">
-      {label}
-    </span>
-  </button>
-);
+import Card from "../../components/ui/Card";
+import ActionButton from "../../components/ui/ActionButton";
 
 export function Home() {
   const navigate = useNavigate();

@@ -2,20 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import { rooms } from "../../data/mockData";
 import { Star, SlidersHorizontal, Search } from "lucide-react";
+import Card from "../../components/ui/Card";
 
-// --- Clean, Structured Card ---
-const Card = ({ children, className = "", onClick }: any) => (
-  <div
-    onClick={onClick}
-    className={`bg-white border border-slate-100 rounded-[2rem] shadow-sm transition-all duration-500 ${
-      onClick ? "cursor-pointer hover:shadow-xl hover:-translate-y-1 active:scale-[0.99]" : ""
-    } ${className}`}
-  >
-    {children}
-  </div>
-);
-
-// --- Simplified Filter Chip ---
 const FilterChip = ({ label, active, onClick }: any) => (
   <button
     onClick={onClick}

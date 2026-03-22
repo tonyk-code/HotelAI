@@ -1,12 +1,11 @@
-import { useState, useEffect } from "react";
-import { Sparkles, UtensilsCrossed, Fan, Wrench, Shirt, CalendarCheck, CheckCircle2, X } from "lucide-react";
+import { useState } from "react";
+import { Sparkles, UtensilsCrossed, Fan, Wrench, Shirt, CalendarCheck, CheckCircle2, X, type LucideIcon } from "lucide-react";
 import { services } from "../../data/mockData";
+import Card from "../../components/ui/Card";
 
-// --- Custom Internal Toast Component ---
 const CustomToast = ({ message, description, onClose }: any) => (
   <div className="fixed bottom-6 right-6 z-50 animate-in slide-in-from-right-10 fade-in duration-300">
     <div className="bg-white border border-slate-100 shadow-2xl rounded-2xl p-4 w-80 flex gap-4 items-start relative overflow-hidden">
-      {/* Visual Accent Bar */}
       <div className="absolute left-0 top-0 bottom-0 w-1 bg-emerald-500" />
       
       <div className="bg-emerald-50 p-2 rounded-xl">
@@ -25,14 +24,9 @@ const CustomToast = ({ message, description, onClose }: any) => (
   </div>
 );
 
-// --- Local UI Components ---
-const Card = ({ children, className = "" }: any) => (
-  <div className={`bg-white border border-slate-100 rounded-[2rem] shadow-sm transition-all duration-300 ${className}`}>
-    {children}
-  </div>
-);
 
-const iconMap: Record<string, any> = {
+
+const iconMap: Record<string, LucideIcon> = {
   Sparkles,
   UtensilsCrossed,
   Fan,
