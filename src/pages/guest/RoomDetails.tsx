@@ -38,7 +38,7 @@ export function RoomDetails() {
             alt={room.name}
             className="w-full h-full object-cover transition-transform duration-1000 hover:scale-105"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-transparent" />
 
           <button
             onClick={() => navigate(-1)}
@@ -66,7 +66,7 @@ export function RoomDetails() {
                 </h1>
               </div>
 
-              <div className="bg-[#F8FAFC] px-8 py-5 rounded-3xl text-right min-w-[160px]">
+              <div className="bg-[#F8FAFC] px-8 py-5 rounded-3xl text-right min-w-40">
                 <p className="text-xs font-bold text-slate-400 uppercase mb-1">Per Night</p>
                 <p className="text-4xl font-bold text-[#1E3A8A] tracking-tighter">${room.price}</p>
               </div>
@@ -121,7 +121,7 @@ export function RoomDetails() {
             {/* CTA Action Area */}
             <div className="pt-8 border-t border-slate-50">
               {isBooked ? (
-                <div className="bg-emerald-50 border border-emerald-100 rounded-[2rem] p-8 text-center animate-in zoom-in-95 duration-500">
+                <div className="bg-emerald-50 border border-emerald-100 rounded-4xl p-8 text-center animate-in zoom-in-95 duration-500">
                   <div className="w-16 h-16 bg-emerald-500 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg shadow-emerald-200">
                     <Check className="w-8 h-8 text-white" />
                   </div>
