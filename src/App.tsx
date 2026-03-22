@@ -5,9 +5,9 @@ import { GuestLayout } from "./components/layout/GuestLayout";
 import {Home} from "./pages/guest/Home";
 import {Explore} from "./pages/guest/Explore";
 import RoomDetails from "./pages/guest/RoomDetails";
-import Services from "./pages/guest/Services";
-import Events from "./pages/guest/Events";
-import Chat from "./pages/guest/Chat";
+import {Services} from "./pages/guest/Services";
+import {Events} from "./pages/guest/Events";
+import {Chat} from "./pages/guest/Chat";
 import Profile from "./pages/guest/Profile";
 
 function App() {
