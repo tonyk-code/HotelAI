@@ -9,7 +9,7 @@ export function GuestLayout() {
   { path: "/app", icon: Home, label: "Home" },
   { path: "/app/explore", icon: Compass, label: "Explore" },
   { path: "/app/services", icon: ConciergeBell, label: "Services" },
-  { path: "/app/events", icon: Calendar, label: "Events" },  // ← added Events
+  { path: "/app/events", icon: Calendar, label: "Events" },  
   { path: "/app/chat", icon: MessageCircle, label: "Chat" },
   { path: "/app/profile", icon: User, label: "Profile" },
 ];

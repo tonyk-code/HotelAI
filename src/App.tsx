@@ -3,7 +3,7 @@ import LandingPage from "./pages/Landing/LandingPage";
 import { LoginPage } from "./pages/LoginPage";
 import { GuestLayout } from "./components/layout/GuestLayout";
 import {Home} from "./pages/guest/Home";
-import Explore from "./pages/guest/Explore";
+import {Explore} from "./pages/guest/Explore";
 import RoomDetails from "./pages/guest/RoomDetails";
 import Services from "./pages/guest/Services";
 import Events from "./pages/guest/Events";
