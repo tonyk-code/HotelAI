@@ -1,25 +1,11 @@
 import { useState, useRef, useEffect } from "react";
-import { Sparkles, User, Bot, Paperclip, ArrowUp, Zap } from "lucide-react";
-
-const SuggestionChip = ({
-  label,
-  onClick,
-}: {
-  label: string;
-  onClick: () => void;
-}) => (
-  <button
-    onClick={onClick}
-    className="px-4 py-2 rounded-xl bg-white border border-slate-100 text-[12px] font-medium text-slate-600 hover:border-[#3B82F6] hover:text-[#1E3A8A] transition-all whitespace-nowrap shadow-sm flex items-center gap-2 group"
-  >
-    <Zap className="w-3 h-3 text-slate-300 group-hover:text-[#3B82F6] transition-colors" />
-    {label}
-  </button>
-);
+import { Sparkles, User, Bot, Paperclip, ArrowUp } from "lucide-react";
+import SuggestionChip from "../../components/ui/SuggestionChip";
+import type { Message } from "../../types/message";
 
 export function Chat() {
   // Load history from localStorage on mount
-  const [messages, setMessages] = useState(() => {
+  const [messages, setMessages] = useState<Message[]>(() => {
     const saved = localStorage.getItem("luxe_chat_history");
     return saved
       ? JSON.parse(saved)
@@ -95,10 +81,10 @@ export function Chat() {
 
       <div
         ref={scrollRef}
-        className="flex-1 overflow-y-auto pt-8 pb-4 space-y-8 overflow-y-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+        className="flex-1 pt-8 pb-4 space-y-8 overflow-y-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
       >
         <div className="max-w-3xl mx-auto px-6 space-y-8">
-          {messages.map((m: any) => (
+          {messages.map((m: Message) => (
             <div
               key={m.id}
               className={`flex gap-4 animate-in fade-in slide-in-from-bottom-2 ${
@@ -150,7 +136,7 @@ export function Chat() {
         </div>
       </div>
 
-      <div className="pb-8 pt-4 bg-gradient-to-t from-white via-white to-transparent">
+      <div className="pb-8 pt-4 bg-linear-to-t from-white via-white to-transparent">
         <div className="max-w-2xl mx-auto px-6 space-y-4">
           {/* Restored Suggestion Chips */}
           <div className="flex gap-2 overflow-x-auto no-scrollbar pb-1">
