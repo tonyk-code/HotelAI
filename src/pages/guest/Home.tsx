@@ -6,11 +6,11 @@ import {
   MessageSquare,
   Sparkles,
   Star,
-  ArrowRight,
 } from "lucide-react";
 import { rooms, events } from "../../data/mockData";
 import Card from "../../components/ui/Card";
 import ActionButton from "../../components/ui/ActionButton";
+import { SectionHeader } from "../../components/ui/SectionHeader";
 
 export function Home() {
   const navigate = useNavigate();
@@ -54,12 +54,7 @@ export function Home() {
         </Card>
 
         <section>
-          <div className="flex items-end justify-between mb-6">
-            <h2 className="text-2xl font-semibold tracking-tight text-[#1E3A8A]">
-              Quick Actions
-            </h2>
-            <div className="h-px flex-1 bg-gray-100 ml-6 mb-2 opacity-50" />
-          </div>
+          <SectionHeader title="Quick Actions" />
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <ActionButton
               icon={Search}
@@ -85,33 +80,19 @@ export function Home() {
         </section>
 
         <section>
-          <div className="flex items-center justify-between mb-8">
-            <div className="flex items-center gap-3">
-              <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-[#1E3A8A]">
-                Curated for You
-              </h2>
-              <span className="px-2 py-0.5 bg-[#3B82F6]/10 text-[#3B82F6] text-[9px] font-black uppercase tracking-widest rounded-md">
-                AI Pick
-              </span>
-            </div>
-
-            <button
-              onClick={() => navigate("/app/explore")}
-              className="group flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] text-[#3B82F6] hover:text-[#1E3A8A] transition-colors"
-            >
-              View All Rooms
-              <div className="w-6 h-6 rounded-full bg-[#3B82F6]/5 flex items-center justify-center group-hover:bg-[#3B82F6]/10 transition-all">
-                <ArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-0.5" />
-              </div>
-            </button>
-          </div>
+          <SectionHeader
+            title="Curated for You"
+            showAIPick={true}
+            viewLabel="View all rooms"
+            onViewAll={() => navigate("/app/explore")}
+          />
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {recommendedRooms.map((room) => (
               <Card
                 key={room.id}
                 className="group flex flex-col overflow-hidden"
-                onClick={() => navigate(`/room/${room.id}`)}
+                onClick={() => navigate(`/app/explore/${room.id}`)}
               >
                 <div className="relative h-64 overflow-hidden">
                   <img
@@ -151,16 +132,18 @@ export function Home() {
         </section>
 
         <section>
-          <h2 className="text-2xl font-semibold tracking-tight text-[#1E3A8A] mb-6">
-            Exclusive Events
-          </h2>
+          <SectionHeader
+            title="Exclusive Events"
+            viewLabel="View all events"
+            onViewAll={() => navigate("/app/events")}
+          />
           <div className="flex flex-col gap-6 pb-4 ">
             {upcomingEvents.map((event) => (
               <Card
                 key={event.id}
-                className="min-w-75 shrink-0 flex items-center p-3 gap-4"
+                className="min-w-75 shrink-0 flex items-center p-3 gap-4 rounded-xl"
               >
-                <div className="w-20 h-20 rounded-2xl overflow-hidden shrink-0">
+                <div className="w-20 h-20 rounded-lg overflow-hidden shrink-0">
                   <img
                     src={event.image}
                     className="w-full h-full object-cover"

@@ -4,7 +4,7 @@ import { LoginPage } from "./pages/LoginPage";
 import { GuestLayout } from "./components/layout/GuestLayout";
 import {Home} from "./pages/guest/Home";
 import {Explore} from "./pages/guest/Explore";
-import RoomDetails from "./pages/guest/RoomDetails";
+import {RoomDetails} from "./pages/guest/RoomDetails";
 import {Services} from "./pages/guest/Services";
 import {Events} from "./pages/guest/Events";
 import {Chat} from "./pages/guest/Chat";
@@ -18,7 +18,7 @@ function App() {
       <Route path="/app" element={<GuestLayout />}>
         <Route index element={<Home />} />
         <Route path="explore" element={<Explore />} />
-        <Route path="room/:id" element={<RoomDetails />} />
+        <Route path="explore/:id" element={<RoomDetails />} />
         <Route path="services" element={<Services />} />
         <Route path="events" element={<Events />} />
         <Route path="chat" element={<Chat />} />
