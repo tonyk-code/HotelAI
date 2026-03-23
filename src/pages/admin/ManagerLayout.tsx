@@ -35,19 +35,32 @@ export function ManagerLayoutContent() {
           </h1>
         </div>
 
-        <nav className="flex-1 px-4 space-y-2">
+        <nav className="flex flex-col gap-2 px-4 py-6">
+          {" "}
           {navigation.map((item) => (
-            <NavLink key={item.path} to={item.path} end={item.path === ""}>
+            <NavLink
+              key={item.path}
+              to={item.path}
+              end
+            >
               {({ isActive }) => (
                 <div
-                  className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 group ${
+                  className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold transition-all duration-200 group ${
                     isActive
-                      ? "bg-white/10 text-white shadow-sm ring-1 ring-white/20"
-                      : "text-blue-100/70 hover:bg-white/5 hover:text-white"
+                      ? "bg-white/10 text-white shadow-sm ring-1 ring-white/20 backdrop-blur-sm"
+                      : "text-blue-100/60 hover:bg-white/5 hover:text-white"
                   }`}
                 >
-                  <item.icon size={18} strokeWidth={isActive ? 2.5 : 2} />
+                  <item.icon
+                    size={18}
+                    className={`${isActive ? "text-blue-400" : "text-blue-100/40 group-hover:text-blue-100"}`}
+                    strokeWidth={isActive ? 2.5 : 2}
+                  />
                   {item.name}
+
+                  {isActive && (
+                    <div className="ml-auto w-1.5 h-1.5 rounded-full bg-blue-400 shadow-[0_0_8px_rgba(96,165,250,0.6)]" />
+                  )}
                 </div>
               )}
             </NavLink>

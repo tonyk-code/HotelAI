@@ -50,7 +50,6 @@ export default function Revenue() {
 
   return (
     <div className="space-y-8">
-      {/* HEADER */}
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-slate-900">
@@ -61,13 +60,10 @@ export default function Revenue() {
           </p>
         </div>
         <div className="flex gap-2">
-          {/* Assume TimeFilter component is handled by layout/hooks */}
         </div>
       </div>
 
-      {/* SUMMARY CARDS */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {/* Income Card */}
         <div className="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
           <div className="flex justify-between items-start">
             <div className="p-2.5 bg-emerald-50 text-emerald-600 rounded-xl">
@@ -108,7 +104,6 @@ export default function Revenue() {
           </div>
         </div>
 
-        {/* Net Profit Card */}
         <div className="bg-[#1E3A8A] rounded-2xl p-6 shadow-lg shadow-blue-900/20 group">
           <div className="flex justify-between items-start">
             <div className="p-2.5 bg-white/10 text-white rounded-xl">
@@ -130,7 +125,6 @@ export default function Revenue() {
         </div>
       </div>
 
-      {/* REVENUE CHART */}
       <div className="bg-white rounded-2xl p-8 border border-slate-100 shadow-sm">
         <div className="flex items-center justify-between mb-8">
           <h3 className="text-sm font-bold text-slate-900 uppercase tracking-tight">

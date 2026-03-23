@@ -93,7 +93,6 @@ export default function Feedback() {
 
   return (
     <div className="space-y-8">
-      {/* HEADER */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div>
           <h1 className="text-2xl font-bold text-slate-900">
@@ -120,7 +119,6 @@ export default function Feedback() {
         </div>
       </div>
 
-      {/* SUMMARY STATS */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {[
           {
@@ -164,7 +162,6 @@ export default function Feedback() {
         ))}
       </div>
 
-      {/* FEEDBACK LIST */}
       <div className="grid gap-4">
         {filteredFeedback.map((item) => (
           <div

@@ -11,7 +11,6 @@ import {
 export default function Reports() {
   return (
     <div className="space-y-8">
-      {/* HEADER */}
       <div>
         <h1 className="text-2xl font-bold text-slate-900">
           Reports & Analytics
@@ -21,7 +20,6 @@ export default function Reports() {
         </p>
       </div>
 
-      {/* REFINED AI INSIGHT SECTION */}
       <div className="bg-slate-900 rounded-2xl p-6 text-white overflow-hidden relative group">
         <div className="absolute -right-4 -top-4 opacity-10 group-hover:scale-110 transition-transform duration-700">
           <Sparkles size={160} />
@@ -46,7 +44,6 @@ export default function Reports() {
         </div>
       </div>
 
-      {/* REPORT GENERATION TOOLS */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <ReportCard
           title="Daily Summary"
@@ -69,7 +66,6 @@ export default function Reports() {
         />
       </div>
 
-      {/* RECENT ARCHIVE */}
       <div className="bg-white rounded-2xl border border-slate-200 shadow-sm">
         <div className="p-6 border-b border-slate-100 flex items-center justify-between">
           <h3 className="text-sm font-bold text-slate-900 uppercase tracking-tight">

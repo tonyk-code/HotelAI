@@ -84,7 +84,6 @@ export default function Tasks() {
 
   return (
     <div className="space-y-8">
-      {/* HEADER SECTION */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div>
           <h1 className="text-2xl font-bold text-slate-900">Task Management</h1>
@@ -139,7 +138,6 @@ export default function Tasks() {
         </div>
       </div>
 
-      {/* TASKS TABLE */}
       <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full border-collapse">

@@ -169,7 +169,6 @@ export function Dashboard() {
         />
       </div>
 
-      {/* AI Summary */}
       <div className="relative overflow-hidden bg-white rounded-2xl p-6 border border-slate-200 shadow-sm ring-1 ring-amber-100/50">
         <div className="absolute top-0 right-0 p-4">
           <Sparkles className="text-amber-400 opacity-20" size={48} />
@@ -200,7 +199,6 @@ export function Dashboard() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Tasks Overview */}
         <div className="bg-white rounded-2xl p-6 shadow-sm">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-lg font-semibold text-[#2D3142]">
@@ -255,7 +253,6 @@ export function Dashboard() {
           </div>
         </div>
 
-        {/* Guest Feedback Summary */}
         <div className="bg-white rounded-2xl p-6 shadow-sm">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-lg font-semibold text-[#2D3142]">
@@ -294,7 +291,6 @@ export function Dashboard() {
         </div>
       </div>
 
-      {/* Revenue Overview */}
       <div className="bg-white rounded-2xl p-6 shadow-sm">
         <h3 className="text-lg font-semibold text-[#2D3142] mb-4">
           Revenue Overview

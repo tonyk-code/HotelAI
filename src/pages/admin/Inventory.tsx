@@ -30,7 +30,6 @@ export default function Inventory() {
 
   return (
     <div className="space-y-8">
-      {/* HEADER SECTION */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div>
           <h1 className="text-2xl font-bold text-slate-900">
@@ -46,7 +45,6 @@ export default function Inventory() {
         </button>
       </div>
 
-      {/* REFINED ALERT BOX */}
       {lowStockItems.length > 0 && (
         <div className="bg-amber-50 border border-amber-100 rounded-2xl p-5 flex items-center justify-between shadow-sm">
           <div className="flex items-center gap-4">
@@ -69,7 +67,6 @@ export default function Inventory() {
         </div>
       )}
 
-      {/* INVENTORY TABLE */}
       <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full border-collapse">

@@ -70,12 +70,10 @@ const bookingsData = [
 export default function Bookings() {
   return (
     <div className="space-y-8">
-      {/* Header Section */}
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-bold text-[#111827]">Bookings</h1>
       </div>
 
-      {/* Search and Filters Bar */}
       <div className="flex flex-col sm:flex-row gap-4 items-center">
         <div className="flex-1 relative w-full group">
           <Search
@@ -102,7 +100,6 @@ export default function Bookings() {
         </div>
       </div>
 
-      {/* Bookings Table */}
       <div className="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
         <table className="w-full border-collapse">
           <thead>
