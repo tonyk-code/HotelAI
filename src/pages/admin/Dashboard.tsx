@@ -175,7 +175,7 @@ export function Dashboard() {
           <Sparkles className="text-amber-400 opacity-20" size={48} />
         </div>
         <div className="flex items-start gap-5">
-          <div className="flex-shrink-0 p-3 bg-amber-50 rounded-2xl border border-amber-100">
+          <div className="shrink-0 p-3 bg-amber-50 rounded-2xl border border-amber-100">
             <Sparkles className="text-amber-600" size={24} />
           </div>
           <div className="flex-1">
