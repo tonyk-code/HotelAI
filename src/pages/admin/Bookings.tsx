@@ -67,7 +67,7 @@ const bookingsData = [
   },
 ];
 
-export function Bookings() {
+export default function Bookings() {
   return (
     <div className="space-y-8">
       {/* Header Section */}
