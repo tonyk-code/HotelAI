@@ -144,7 +144,7 @@ export default function Inventory() {
 
                     <td className="px-6 py-4">
                       <div className="flex items-center gap-3">
-                        <div className="flex-1 bg-slate-100 rounded-full h-1.5 max-w-[100px]">
+                        <div className="flex-1 bg-slate-100 rounded-full h-1.5 max-w-25">
                           <div
                             className={`h-1.5 rounded-full transition-all duration-500 ${
                               percentage < 50
