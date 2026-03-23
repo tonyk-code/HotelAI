@@ -1,9 +1,8 @@
 import { useState } from "react";
-import { Calendar, Clock, Check, X, MapPin } from "lucide-react";
+import { Calendar, Clock, Check, X } from "lucide-react";
 import { events } from "../../data/mockData";
 
-// --- Custom Internal Toast (Built-in) ---
-const CustomToast = ({ message, onClose }: any) => (
+const CustomToast = ({ message, onClose }:any) => (
   <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 animate-in slide-in-from-bottom-5 fade-in duration-300">
     <div className="bg-[#1E3A8A] text-white shadow-2xl rounded-2xl px-6 py-4 flex items-center gap-4 min-w-[320px]">
       <div className="bg-white/20 p-1.5 rounded-lg">
@@ -51,7 +50,7 @@ export function Events() {
                 className="group flex flex-col lg:flex-row bg-white border border-slate-100 rounded-[2.5rem] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500"
               >
                 {/* Image Section */}
-                <div className="lg:w-2/5 h-64 lg:h-auto overflow-hidden relative">
+                <div className="lg:w-2/5 h-64 lg:h-100 overflow-hidden relative">
                   <img
                     src={event.image}
                     alt={event.name}
