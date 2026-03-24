@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ImageWithFallback } from "../components/ui/ImageWithFallback";
+import { ChevronRight, Lock, Mail } from "lucide-react";
 
 export function LoginPage() {
   const [email, setEmail] = useState("");
@@ -8,143 +9,121 @@ export function LoginPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Login attempt with:", { email, password });
-    // Add your login logic here
   };
 
   return (
-    <div className="min-h-screen flex flex-col lg:flex-row">
-      <div className="relative lg:w-1/2 h-48 lg:h-auto overflow-hidden">
+    <div className="min-h-screen flex flex-col lg:flex-row bg-[#F8FAFC] antialiased">
+      <div className="relative lg:w-1/2 h-64 lg:h-auto overflow-hidden">
         <ImageWithFallback
-          src="https://images.unsplash.com/photo-1742844553019-5874910636d4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBob3RlbCUyMGxvYmJ5JTIwcmVzb3J0fGVufDF8fHx8MTc3NDA5NzMzMnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+          src="https://images.unsplash.com/photo-1742844553019-5874910636d4?q=80&w=1080&auto=format&fit=crop"
           alt="Luxury hotel lobby"
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover transition-transform duration-1000 hover:scale-105"
         />
 
-        <div
-          className="absolute inset-0 flex flex-col justify-center items-center text-white px-8"
-          style={{
-            background:
-              "linear-gradient(135deg, rgba(45, 49, 66, 0.75) 0%, rgba(45, 49, 66, 0.45) 100%)",
-          }}
-        >
-          <div className="text-center max-w-md">
-            <h1 className="text-3xl lg:text-5xl mb-3 lg:mb-4">
-              Experience Smart Hospitality
+        <div className="absolute inset-0 bg-linear-to-t from-[#1E3A8A]/90 via-[#1E3A8A]/30 to-transparent" />
+
+        <div className="absolute inset-0 flex flex-col justify-end p-10 lg:p-20 text-white">
+          <div className="max-w-md space-y-4">
+            <span className="text-[10px] font-bold uppercase tracking-[0.4em] opacity-70">
+              Est. 1924 • Grand Luxe
+            </span>
+            <h1 className="text-4xl lg:text-6xl font-light tracking-tight leading-tight">
+              The Art of <br />
+              <span className="font-semibold text-[#3B82F6]">Hospitality.</span>
             </h1>
-            <p className="text-sm lg:text-base opacity-90">
-              Seamless management for modern hotels and resorts
+            <p className="text-sm lg:text-lg opacity-80 font-light max-w-sm leading-relaxed">
+              Experience a seamless blend of heritage and modern innovation.
             </p>
           </div>
         </div>
       </div>
 
-      <div
-        className="flex-1 lg:w-1/2 flex items-center justify-center px-6 py-12 lg:px-12"
-        style={{ backgroundColor: "#EAE8FF" }}
-      >
-        <div
-          className="w-full max-w-md rounded-3xl p-8 lg:p-10 "
-          style={{ backgroundColor: "#EAE8FF" }}
-        >
-          <div className="text-center mb-8">
-            <h2
-              className="text-3xl lg:text-4xl mb-2"
-              style={{ color: "#2D3142" }}
-            >
-              Welcome Back
+      <div className="flex-1 flex items-center justify-center px-6 py-16 lg:px-20">
+        <div className="w-full max-w-sm space-y-10">
+          <header className="space-y-2">
+            <h2 className="text-3xl font-semibold text-[#111827] tracking-tight">
+              Welcome back
             </h2>
-            <p className="text-sm lg:text-base" style={{ color: "#ADACB5" }}>
-              Login to continue your experience
+            <p className="text-[#6B7280] text-sm">
+              Please enter your credentials to access your dashboard.
             </p>
-          </div>
+          </header>
 
-          <form onSubmit={handleSubmit} className="space-y-5">
-            <div className="space-y-2">
-              <label
-                htmlFor="email"
-                className="text-sm block"
-                style={{ color: "#2D3142" }}
-              >
-                Email Address
-              </label>
-              <input
-                id="email"
-                type="email"
-                placeholder="Enter your email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                className="w-full px-4 py-3 rounded-xl border-0 transition-all duration-200 focus:ring-2 focus:ring-offset-0"
-                style={{
-                  backgroundColor: "#D8D5DB",
-                  color: "#2D3142",
-                }}
-              />
-            </div>
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="space-y-5">
+              <div className="space-y-2">
+                <label
+                  htmlFor="email"
+                  className="text-[11px] font-bold uppercase tracking-wider text-[#1E3A8A] ml-1"
+                >
+                  Email Address
+                </label>
+                <div className="relative group">
+                  <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#ADACB5] group-focus-within:text-[#3B82F6] transition-colors" />
+                  <input
+                    id="email"
+                    type="email"
+                    placeholder="sarah.johnson@luxury.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                    className="w-full pl-12 pr-4 py-4 rounded-2xl bg-white border border-slate-200 text-[#111827] text-sm placeholder:text-slate-300 focus:ring-4 focus:ring-[#3B82F6]/5 focus:border-[#3B82F6] transition-all outline-none shadow-sm"
+                  />
+                </div>
+              </div>
 
-            <div className="space-y-2">
-              <label
-                htmlFor="password"
-                className="text-sm block"
-                style={{ color: "#2D3142" }}
-              >
-                Password
-              </label>
-              <input
-                id="password"
-                type="password"
-                placeholder="Enter your password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                className="w-full px-4 py-3 rounded-xl border-0 transition-all duration-200 focus:ring-2 focus:ring-offset-0"
-                style={{
-                  backgroundColor: "#D8D5DB",
-                  color: "#2D3142",
-                }}
-              />
-            </div>
-
-            <div className="flex justify-end">
-              <a
-                href="#"
-                className="text-sm hover:underline transition-colors"
-                style={{ color: "#ADACB5" }}
-              >
-                Forgot Password?
-              </a>
+              <div className="space-y-2">
+                <div className="flex justify-between items-end ml-1">
+                  <label
+                    htmlFor="password"
+                    className="text-[11px] font-bold uppercase tracking-wider text-[#1E3A8A]"
+                  >
+                    Password
+                  </label>
+                  <a
+                    href="#"
+                    className="text-xs text-[#3B82F6] hover:underline font-medium"
+                  >
+                    Forgot?
+                  </a>
+                </div>
+                <div className="relative group">
+                  <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#ADACB5] group-focus-within:text-[#3B82F6] transition-colors" />
+                  <input
+                    id="password"
+                    type="password"
+                    placeholder="••••••••"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                    className="w-full pl-12 pr-4 py-4 rounded-2xl bg-white border border-slate-200 text-[#111827] text-sm placeholder:text-slate-300 focus:ring-4 focus:ring-[#3B82F6]/5 focus:border-[#3B82F6] transition-all outline-none shadow-sm"
+                  />
+                </div>
+              </div>
             </div>
 
             <button
               type="submit"
-              className="w-full py-4 rounded-lg text-base font-medium text-[#2D3142] bg-[#B0D7FF] hover:bg-[#ADACB5] transition-colors duration-200"
+              className="group w-full relative flex items-center justify-center py-4 rounded-2xl bg-[#1E3A8A] text-white font-semibold text-sm hover:bg-[#1E3A8A]/90 shadow-xl shadow-blue-900/10 transition-all active:scale-[0.98]"
             >
-              Login
+              Sign in
+              <ChevronRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
             </button>
           </form>
 
-          <div className="mt-6 text-center">
-            <p className="text-sm" style={{ color: "#ADACB5" }}>
-              Don't have an account?{" "}
+          <footer className="pt-4 text-center">
+            <p className="text-sm text-[#6B7280]">
+              New to the platform?{" "}
               <a
                 href="#"
-                className="hover:underline transition-colors"
-                style={{ color: "#2D3142" }}
+                className="text-[#111827] font-bold hover:text-[#3B82F6] transition-colors ml-1"
               >
-                Sign up
+                Create an account
               </a>
             </p>
-          </div>
+          </footer>
         </div>
       </div>
-
-      <style>{`
-        input:focus {
-          outline: none;
-          border-color: #B0D7FF !important;
-          box-shadow: 0 0 0 3px rgba(176, 215, 255, 0.3) !important;
-        }
-      `}</style>
     </div>
   );
 }

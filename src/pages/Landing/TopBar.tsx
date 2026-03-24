@@ -1,8 +1,10 @@
 import { Mail, Phone, LogIn, ChevronDown, Globe } from "lucide-react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export function TopBar() {
   const [isLangOpen, setIsLangOpen] = useState(false);
+  const navigate = useNavigate()
 
   return (
     <section className="w-full bg-[#2D3142] text-[#EAE8FF] border-b border-[#ADACB5]/10 relative z-100">
@@ -66,9 +68,11 @@ export function TopBar() {
 
           <div className="h-4 w-px bg-[#ADACB5]/30" />
 
-          <button className="flex items-center gap-2 text-[12px] md:text-[13px] font-bold hover:text-[#B0D7FF] text-white transition-all group">
+          <button 
+          onClick={() => navigate("/login")}
+          className="flex items-center gap-2 text-[12px] md:text-[13px] font-bold hover:text-[#B0D7FF] text-white transition-all group">
             <LogIn className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-            <span className="uppercase tracking-wider">Sign In</span>
+            <span className="uppercase tracking-wider">Log In</span>
           </button>
         </div>
       </div>
