@@ -2,8 +2,30 @@ import { useState, useRef, useEffect } from "react";
 import { Sparkles, User, Bot, Paperclip, ArrowUp } from "lucide-react";
 import SuggestionChip from "../../components/ui/SuggestionChip";
 import type { Message } from "../../types/message";
+import { useChat } from "../../hooks/customhooks/useChat";
+import { label } from "framer-motion/client";
+
+const suggestionData = [
+  {
+    label: "Room Service",
+    message: "I'd like to order room service",
+  },
+  {
+    label: "Check Availability",
+    message: "Are there any suites available tonight?",
+  },
+  {
+    label: "Spa Menu",
+    message: "Show me the spa treatments",
+  },
+  {
+    label: "Late Checkout",
+    message: "Request a late checkout",
+  },
+];
 
 export function Chat() {
+  const { send } = useChat();
   const [messages, setMessages] = useState<Message[]>(() => {
     const saved = localStorage.getItem("luxe_chat_history");
     return saved
@@ -32,22 +54,36 @@ export function Chat() {
     if (!text.trim() || isThinking) return;
 
     const userMsg = {
-      id: Date.now().toString(),
+      id: crypto.randomUUID(),
       text,
       sender: "user" as const,
+      createdAt: Date.now(),
     };
     setMessages((prev) => [...prev, userMsg]);
     setInputValue("");
     setIsThinking(true);
 
-    setTimeout(() => {
-      setIsThinking(false);
-      const aiMsg = {
+    setTimeout(async () => {
+      const result = await send(text);
+
+      const aiMsg: Message = {
         id: (Date.now() + 1).toString(),
-        text: "I've updated your preferences. Is there anything else I can arrange for your suite?",
-        sender: "ai" as const,
+        text: result.reply,
+        sender: "ai",
+        createdAt: Date.now(),
+        meta: result.meta,
       };
+
       setMessages((prev) => [...prev, aiMsg]);
+      setIsThinking(false);
+
+      if (result.meta?.action === "CREATE_TASK") {
+        console.log("Task sent to manager:", result.meta.payload);
+      }
+
+      if (result.meta?.action === "SEND_FEEDBACK") {
+        console.log("Feedback stored:", result.meta.payload);
+      }
     }, 1500);
   };
 
@@ -135,28 +171,14 @@ export function Chat() {
 
       <div className="pb-8 pt-4 bg-linear-to-t from-white via-white to-transparent">
         <div className="max-w-2xl mx-auto px-6 space-y-4">
-          {/* Restored Suggestion Chips */}
           <div className="flex gap-2 overflow-x-auto no-scrollbar pb-1">
-            <SuggestionChip
-              label="Room Service"
-              onClick={() =>
-                handleSendMessage("I'd like to order room service")
-              }
-            />
-            <SuggestionChip
-              label="Check Availability"
-              onClick={() =>
-                handleSendMessage("Are there any suites available tonight?")
-              }
-            />
-            <SuggestionChip
-              label="Spa Menu"
-              onClick={() => handleSendMessage("Show me the spa treatments")}
-            />
-            <SuggestionChip
-              label="Late Checkout"
-              onClick={() => handleSendMessage("Request a late checkout")}
-            />
+            {suggestionData.map((s, i) => (
+              <SuggestionChip
+                key={String(i) + label}
+                label={s.label}
+                onClick={() => handleSendMessage(s.message)}
+              />
+            ))}
           </div>
 
           <div className="relative flex items-center border border-slate-200 rounded-2xl p-1.5 bg-white shadow-xl shadow-slate-200/40 focus-within:border-blue-400 transition-all">
