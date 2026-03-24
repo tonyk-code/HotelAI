@@ -4,7 +4,6 @@ import SuggestionChip from "../../components/ui/SuggestionChip";
 import type { Message } from "../../types/message";
 
 export function Chat() {
-  // Load history from localStorage on mount
   const [messages, setMessages] = useState<Message[]>(() => {
     const saved = localStorage.getItem("luxe_chat_history");
     return saved
@@ -22,7 +21,6 @@ export function Chat() {
   const [isThinking, setIsThinking] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  // Save history whenever messages change
   useEffect(() => {
     localStorage.setItem("luxe_chat_history", JSON.stringify(messages));
     if (scrollRef.current)
@@ -42,7 +40,6 @@ export function Chat() {
     setInputValue("");
     setIsThinking(true);
 
-    // Realistic thinking delay
     setTimeout(() => {
       setIsThinking(false);
       const aiMsg = {

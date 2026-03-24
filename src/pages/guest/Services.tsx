@@ -9,9 +9,11 @@ import {
   CheckCircle2,
   type LucideIcon,
 } from "lucide-react";
-import { services } from "../../data/mockData";
 import Card from "../../components/ui/Card";
 import CustomToast from "../../components/ui/CustomToast";
+import { useServices } from "../../hooks/query/useServices";
+import { QueryError } from "../../components/ui/QueryError";
+import { ServiceLoadingGrid } from "../../components/ui/ServiceSkeleton";
 
 const iconMap: Record<string, LucideIcon> = {
   Sparkles,
@@ -27,8 +29,15 @@ export function Services() {
   const [requestedServices, setRequestedServices] = useState<Set<string>>(
     new Set(),
   );
+  const {
+    data: services = [],
+    isLoading,
+    isError,
+    error,
+    refetch,
+    isFetching,
+  } = useServices();
 
-  // --- Toast Logic State ---
   const [toast, setToast] = useState<{
     show: boolean;
     title: string;
@@ -50,20 +59,25 @@ export function Services() {
   const handleServiceRequest = (serviceId: string, serviceName: string) => {
     setRequestedServices((prev) => new Set(prev).add(serviceId));
 
-    // Trigger custom toast
     setToast({
       show: true,
       title: "Request Received",
       desc: `${serviceName} is now being processed.`,
     });
 
-    // Auto-hide after 4 seconds
     setTimeout(() => setToast(null), 4000);
   };
 
+  if (isError) {
+    return (
+      <div className="max-w-7xl mx-auto px-6 py-12">
+        <QueryError error={error} refetch={refetch} isRefetching={isFetching} />
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen pb-20 relative ">
-      {/* Render Custom Toast if active */}
       {toast && (
         <CustomToast
           message={toast.title}
@@ -84,7 +98,6 @@ export function Services() {
           </div>
         </div>
 
-        {/* Categories */}
         <div className="flex gap-3 overflow-x-auto no-scrollbar mb-12">
           {categories.map((cat) => (
             <button
@@ -101,54 +114,57 @@ export function Services() {
           ))}
         </div>
 
-        {/* Services Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {filteredServices.map((service) => {
-            const Icon = iconMap[service.icon] || Sparkles;
-            const isRequested = requestedServices.has(service.id);
+          {isLoading ? (
+            <ServiceLoadingGrid />
+          ) : (
+            filteredServices.map((service) => {
+              const Icon = iconMap[service.icon] || Sparkles;
+              const isRequested = requestedServices.has(service.id);
 
-            return (
-              <Card
-                key={service.id}
-                className="p-8 flex flex-col items-center text-center group hover:shadow-xl transition-all"
-              >
-                <div
-                  className={`w-20 h-20 rounded-4xl flex items-center justify-center mb-6 transition-all ${
-                    isRequested
-                      ? "bg-emerald-50"
-                      : "bg-slate-50 group-hover:bg-blue-50"
-                  }`}
+              return (
+                <Card
+                  key={service.id}
+                  className="p-8 flex flex-col items-center text-center group hover:shadow-xl transition-all"
                 >
-                  <Icon
-                    className={`w-10 h-10 ${isRequested ? "text-emerald-500" : "text-[#1E3A8A]"}`}
-                  />
-                </div>
-
-                <h3 className="text-xl font-bold text-[#1E3A8A] mb-1">
-                  {service.name}
-                </h3>
-                <p className="text-xs text-slate-400 mb-8 uppercase tracking-tight font-semibold">
-                  Priority: Medium
-                </p>
-
-                {isRequested ? (
-                  <div className="w-full py-4 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center gap-2 text-xs font-bold">
-                    <CheckCircle2 className="w-4 h-4" />
-                    CONFIRMED
-                  </div>
-                ) : (
-                  <button
-                    onClick={() =>
-                      handleServiceRequest(service.id, service.name)
-                    }
-                    className="w-full py-4 bg-white border border-slate-100 text-[#1E3A8A] rounded-2xl text-xs font-bold hover:bg-[#1E3A8A] hover:text-white transition-all active:scale-95 shadow-sm"
+                  <div
+                    className={`w-20 h-20 rounded-4xl flex items-center justify-center mb-6 transition-all ${
+                      isRequested
+                        ? "bg-emerald-50"
+                        : "bg-slate-50 group-hover:bg-blue-50"
+                    }`}
                   >
-                    Send Request
-                  </button>
-                )}
-              </Card>
-            );
-          })}
+                    <Icon
+                      className={`w-10 h-10 ${isRequested ? "text-emerald-500" : "text-[#1E3A8A]"}`}
+                    />
+                  </div>
+
+                  <h3 className="text-xl font-bold text-[#1E3A8A] mb-1">
+                    {service.name}
+                  </h3>
+                  <p className="text-xs text-slate-400 mb-8 uppercase tracking-tight font-semibold">
+                    Priority: Medium
+                  </p>
+
+                  {isRequested ? (
+                    <div className="w-full py-4 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center gap-2 text-xs font-bold">
+                      <CheckCircle2 className="w-4 h-4" />
+                      CONFIRMED
+                    </div>
+                  ) : (
+                    <button
+                      onClick={() =>
+                        handleServiceRequest(service.id, service.name)
+                      }
+                      className="w-full py-4 bg-white border border-slate-100 text-[#1E3A8A] rounded-2xl text-xs font-bold hover:bg-[#1E3A8A] hover:text-white transition-all active:scale-95 shadow-sm"
+                    >
+                      Send Request
+                    </button>
+                  )}
+                </Card>
+              );
+            })
+          )}
         </div>
       </div>
     </div>
