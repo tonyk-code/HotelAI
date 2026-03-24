@@ -1,10 +1,10 @@
-import { Star, MapPin, Bed, Bath, ArrowUpRight } from "lucide-react";
+import { Star, MapPin, Bed, Bath, ArrowRight } from "lucide-react";
 
 const rooms = [
   {
     image:
-      "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600",
-    name: "Ocean View Room",
+      "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&q=80&w=800",
+    name: "Ocean View Villa",
     price: 450,
     beds: 2,
     bathrooms: 1,
@@ -13,8 +13,8 @@ const rooms = [
   },
   {
     image:
-      "https://images.unsplash.com/photo-1618773928121-c32242e63f39?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600",
-    name: "Mountain Room",
+      "https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&q=80&w=800",
+    name: "Alpine Peak Suite",
     price: 320,
     beds: 1,
     bathrooms: 1,
@@ -23,8 +23,8 @@ const rooms = [
   },
   {
     image:
-      "https://images.unsplash.com/photo-1611892440504-42a792e24d32?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600",
-    name: "Balcony Suite",
+      "https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&q=80&w=800",
+    name: "Tropical Sanctuary",
     price: 580,
     beds: 3,
     bathrooms: 2,
@@ -33,8 +33,8 @@ const rooms = [
   },
   {
     image:
-      "https://images.unsplash.com/photo-1607712617949-8c993d290809?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600",
-    name: "Luxury Suite",
+      "https://images.unsplash.com/photo-1607712617949-8c993d290809?auto=format&fit=crop&q=80&w=800",
+    name: "The Manhattan Loft",
     price: 280,
     beds: 1,
     bathrooms: 1,
@@ -45,60 +45,71 @@ const rooms = [
 
 export function FeaturedRooms() {
   return (
-    <section className="py-16 px-4 sm:px-6 lg:px-8 bg-[#EAE8FF]">
+    <section id="rooms" className="py-24 px-6 lg:px-8 bg-[#F8FAFC]">
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <span className="text-xs font-bold tracking-widest text-[#ADACB5] uppercase">
-            Available Rooms
-          </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#2D3142] mt-2">
-            Book Your <span className="text-[#ADACB5] font-light italic">Room</span>
-          </h2>
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+          <div className="max-w-xl">
+            <span className="text-[11px] font-bold tracking-wider text-[#3B82F6] uppercase">
+              Curated Selection
+            </span>
+            <h2 className="text-4xl md:text-5xl font-semibold text-[#111827] tracking-tight mt-3">
+              Book Your{" "}
+              <span className="text-slate-400 font-light italic">
+                Sanctuary
+              </span>
+            </h2>
+          </div>
+          <button className="hidden md:flex items-center gap-2 text-[#1E3A8A] font-bold text-sm group">
+            VIEW ALL ROOMS
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </button>
         </div>
 
-        {/* Horizontal Scroll Cards */}
-        <div className="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden scrollbar-none -ms-overflow-style-none scrollbar-width-none">
+        <div className="flex gap-8 overflow-x-auto pb-8 snap-x snap-mandatory scrollbar-hide lg:grid lg:grid-cols-4 lg:overflow-visible">
           {rooms.map((room, i) => (
             <div
               key={i}
-              className="shrink-0 w-72 sm:w-80 md:w-96 snap-start bg-white rounded-2xl shadow-lg overflow-hidden cursor-pointer"
+              className="shrink-0 w-[85vw] sm:w-[45vw] lg:w-full snap-start group cursor-pointer"
             >
-              {/* Image */}
-              <div className="relative h-48">
+              <div className="relative aspect-4/5 rounded-[2.5rem] overflow-hidden mb-6 shadow-sm transition-all duration-500 group-hover:shadow-2xl group-hover:shadow-blue-900/10">
                 <img
                   src={room.image}
                   alt={room.name}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
-                <div className="absolute top-2 left-2 bg-white/80 px-2 py-1 rounded-xl flex items-center gap-1 border border-white/30">
-                  <Star className="w-3 h-3 text-[#2D3142] fill-current" />
-                  <span className="text-xs font-bold text-[#2D3142]">{room.rating}</span>
+
+                <div className="absolute top-5 right-5 bg-white/70 backdrop-blur-md px-3 py-1.5 rounded-full flex items-center gap-1.5 border border-white/30 shadow-sm">
+                  <Star className="w-3 h-3 text-amber-500 fill-amber-500" />
+                  <span className="text-xs font-bold text-[#111827]">
+                    {room.rating}
+                  </span>
+                </div>
+
+                <div className="absolute bottom-5 right-5 bg-[#111827] text-white px-4 py-2 rounded-2xl">
+                  <span className="text-sm font-semibold">${room.price}</span>
+                  <span className="text-[10px] opacity-60 ml-1">/ night</span>
                 </div>
               </div>
 
-              {/* Content */}
-              <div className="p-4">
-                <div className="flex items-center gap-1.5 text-[#ADACB5] mb-2">
+              <div className="px-2 space-y-3">
+                <div className="flex items-center gap-1.5 text-slate-400">
                   <MapPin className="w-3 h-3" />
-                  <span className="text-[11px] font-bold uppercase">{room.location}</span>
+                  <span className="text-[11px] font-bold uppercase tracking-wide">
+                    {room.location}
+                  </span>
                 </div>
 
-                <h3 className="text-lg font-bold text-[#2D3142] mb-2">{room.name}</h3>
+                <h3 className="text-xl font-semibold text-[#111827] group-hover:text-[#3B82F6] transition-colors">
+                  {room.name}
+                </h3>
 
-                <div className="flex items-center justify-between text-sm text-[#2D3142]/70 mb-3">
+                <div className="flex items-center gap-6 text-sm text-slate-500 font-light">
                   <div className="flex items-center gap-2">
-                    <Bed className="w-4 h-4" /> {room.beds} Beds
+                    <Bed className="w-4 h-4 text-slate-300" /> {room.beds} Beds
                   </div>
                   <div className="flex items-center gap-2">
-                    <Bath className="w-4 h-4" /> {room.bathrooms} Baths
-                  </div>
-                </div>
-
-                <div className="flex justify-between items-center">
-                  <span className="text-lg font-bold text-[#2D3142]">${room.price}/nt</span>
-                  <div className="w-8 h-8 rounded-full bg-[#B0D7FF] flex items-center justify-center text-[#2D3142]">
-                    <ArrowUpRight className="w-4 h-4" />
+                    <Bath className="w-4 h-4 text-slate-300" /> {room.bathrooms}{" "}
+                    Baths
                   </div>
                 </div>
               </div>
@@ -106,6 +117,11 @@ export function FeaturedRooms() {
           ))}
         </div>
       </div>
+
+      <style>{`
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+      `}</style>
     </section>
   );
 }

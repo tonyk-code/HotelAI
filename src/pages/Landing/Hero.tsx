@@ -1,89 +1,112 @@
 import { motion, type Variants } from "framer-motion";
-import { Sparkles } from "lucide-react";
+import { Sparkles, ArrowRight } from "lucide-react";
 
 export function Hero() {
   const containerVars: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.2, delayChildren: 0.3 },
+      transition: { staggerChildren: 0.15, delayChildren: 0.2 },
     },
   };
 
   const itemVars: Variants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
+      transition: { duration: 1, ease: [0.16, 1, 0.3, 1] },
     },
   };
 
   return (
-    <section id="home" className="relative min-h-[90vh] flex items-center bg-[#EAE8FF] overflow-hidden">
-      <motion.div
-        initial={{ x: "100%" }}
-        animate={{ x: 0 }}
-        transition={{ duration: 1.2, ease: [0.76, 0, 0.24, 1] }}
-        className="absolute top-0 right-0 w-1/2 h-full bg-[#2D3142] hidden lg:block"
-        style={{ clipPath: "polygon(20% 0%, 100% 0%, 100% 100%, 0% 100%)" }}
-      />
+    <section
+      id="home"
+      className="relative min-h-[85vh] flex items-center bg-[#F8FAFC] overflow-hidden pt-10"
+    >
+      <div className="absolute top-0 right-0 w-1/3 h-full bg-[#1E3A8A]/5 hidden lg:block" />
 
       <motion.div
         variants={containerVars}
         initial="hidden"
         animate="visible"
-        className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center z-10"
+        className="max-w-7xl mx-auto px-6 lg:px-8 grid lg:grid-cols-2 gap-16 items-center z-10"
       >
-        <div className="space-y-6">
+        <div className="space-y-8">
           <motion.div
             variants={itemVars}
-            className="inline-flex items-center gap-2 px-3 py-1 mt-5 lg:mt-0 rounded-full bg-[#B0D7FF]/30 border border-[#B0D7FF]/50"
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm"
           >
-            <Sparkles className="w-4 h-4 text-[#2D3142]" />
-            <span className="text-[12px] font-bold tracking-widest text-[#2D3142] uppercase">
-              Luxury Retreats
+            <Sparkles className="w-3.5 h-3.5 text-[#3B82F6]" />
+            <span className="text-[11px] font-bold tracking-wider text-[#1E3A8A] uppercase">
+              2026 Collection
             </span>
           </motion.div>
 
           <motion.h1
             variants={itemVars}
-            className="text-5xl lg:text-7xl font-bold text-[#2D3142] leading-[1.1] tracking-tight"
+            className="text-6xl lg:text-8xl font-semibold text-[#111827] leading-[0.95] tracking-tight"
           >
             Your Next <br />
-            <span className="text-[#ADACB5] font-light italic text-6xl lg:text-8xl">
-              Dream Stay
-            </span>
+            <span className="text-[#3B82F6] font-light italic">Dream Stay</span>
           </motion.h1>
 
           <motion.p
             variants={itemVars}
-            className="text-lg text-[#2D3142]/70 max-w-lg leading-relaxed"
+            className="text-lg lg:text-xl text-slate-500 max-w-md leading-relaxed font-light"
           >
-            Explore top-rated hotels and cozy getaways. Find the perfect room for 
-            your trip, whether it’s city adventures or peaceful escapes.
+            A sanctuary of sophisticated design and curated experiences,
+            tailored to your unique journey.
           </motion.p>
 
-          <motion.div variants={itemVars} className="flex flex-wrap gap-4">
-            <button className="bg-[#2D3142] text-[#EAE8FF] px-8 py-4 rounded-full font-bold shadow-xl hover:bg-[#3d4259] transition-all">
-              Book Now
+          <motion.div variants={itemVars} className="flex flex-wrap gap-4 pt-4">
+            <button className="group flex items-center gap-3 bg-[#1E3A8A] text-white px-10 py-5 rounded-2xl font-semibold shadow-2xl shadow-blue-900/20 hover:bg-[#3B82F6] transition-all active:scale-95">
+              Explore Rooms
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </button>
           </motion.div>
         </div>
 
         <motion.div
-          initial={{ opacity: 0, scale: 1.1, filter: "blur(10px)" }}
-          animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-          transition={{ duration: 1.5, ease: "easeOut" }}
+          initial={{ opacity: 0, x: 40 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
           className="relative"
         >
-          <div className="relative aspect-4/5 rounded-[40px] overflow-hidden border-12 border-white shadow-2xl">
+          <div className="relative aspect-4/5 rounded-[60px] overflow-hidden shadow-[0_32px_64px_-16px_rgba(30,58,138,0.25)]">
             <img
               src="https://images.unsplash.com/photo-1694967832949-09984640b143?auto=format&fit=crop&q=80&w=800"
-              alt="Serene mountain resort room with a view"
+              alt="Luxury resort room"
               className="w-full h-full object-cover"
             />
           </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8 }}
+            className="absolute -bottom-8 -left-8 bg-white/90 backdrop-blur-md p-6 rounded-3xl shadow-xl border border-white/20 hidden md:block"
+          >
+            <div className="flex items-center gap-4">
+              <div className="flex -space-x-3">
+                {[1, 2, 3].map((i) => (
+                  <div
+                    key={i}
+                    className="w-8 h-8 rounded-full border-2 border-white bg-slate-200 overflow-hidden"
+                  >
+                    <img
+                      src={`https://i.pravatar.cc/100?img=${i + 10}`}
+                      alt="user"
+                    />
+                  </div>
+                ))}
+              </div>
+              <p className="text-sm font-medium text-slate-700">
+                <span className="text-[#1E3A8A] font-bold">500+</span> guests
+                staying <br /> with us today
+              </p>
+            </div>
+          </motion.div>
         </motion.div>
       </motion.div>
     </section>

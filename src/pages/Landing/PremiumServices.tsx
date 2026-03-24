@@ -5,38 +5,35 @@ import { ArrowRight, Sparkles } from "lucide-react";
 const services = [
   {
     image:
-      "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600",
-    title: "Ocean View Room",
+      "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&q=80&w=1000",
+    title: "Oceanfront Living",
+    tag: "Exclusive",
     description:
-      "Relax in our spacious ocean view rooms with modern amenities and private balconies overlooking the sea.",
+      "Private balconies overlooking the turquoise horizon, designed for serene mornings.",
   },
   {
     image:
-      "https://images.unsplash.com/photo-1618773928121-c32242e63f39?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600",
-    title: "Mountain Suite",
+      "https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&q=80&w=1000",
+    title: "Mountain Sanctuary",
+    tag: "Retreat",
     description:
-      "Enjoy breathtaking mountain views from our luxury suites, featuring cozy interiors and elegant furnishings.",
+      "Breathtaking peak views from suites featuring cozy, hand-crafted interiors.",
   },
   {
     image:
-      "https://images.unsplash.com/photo-1611892440504-42a792e24d32?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600",
-    title: "Private Villa",
+      "https://images.unsplash.com/photo-1587985064135-0366536eab42?auto=format&fit=crop&q=80&w=1000",
+    title: "Wellness & Spa",
+    tag: "Revitalize",
     description:
-      "Experience ultimate privacy and comfort in our private villas, complete with personal pools and garden spaces.",
+      "Holistic treatments and thermal baths crafted for complete mind-body restoration.",
   },
   {
     image:
-      "https://images.unsplash.com/photo-1587985064135-0366536eab42?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600",
-    title: "Spa & Wellness Center",
-    description:
-      "Rejuvenate with holistic spa treatments, sauna sessions, and wellness programs crafted for relaxation.",
-  },
-  {
-    image:
-      "https://images.unsplash.com/photo-1629140727571-9b5c6f6267b4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=600",
+      "https://images.unsplash.com/photo-1629140727571-9b5c6f6267b4?auto=format&fit=crop&q=80&w=1000",
     title: "Gourmet Dining",
+    tag: "Culinary",
     description:
-      "Savor exquisite meals prepared by world-class chefs in our elegant restaurants with panoramic views.",
+      "Michelin-starred excellence paired with panoramic views of the estate.",
   },
 ];
 
@@ -44,26 +41,32 @@ export function PremiumServices() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(0);
 
   return (
-    <section className="py-32 px-6 bg-[#EAE8FF]">
+    <section id="services" className="py-24 lg:py-32 px-6 bg-[#F8FAFC]">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-20">
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-2 mb-4"
-          >
-            <Sparkles className="w-4 h-4 text-[#B0D7FF]" />
-            <span className="text-[12px] font-bold tracking-[0.3em] text-[#ADACB5] uppercase">
-              Hotel Amenities
-            </span>
-          </motion.div>
-          <h2 className="text-4xl md:text-6xl font-bold text-[#2D3142] tracking-tighter">
-            The <span className="text-[#ADACB5] font-light italic">Luxury</span>{" "}
-            Experience
-          </h2>
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 lg:mb-24 gap-6">
+          <div className="max-w-2xl">
+            <motion.div
+              initial={{ opacity: 0, x: -10 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              className="inline-flex items-center gap-2 mb-4"
+            >
+              <Sparkles className="w-4 h-4 text-[#3B82F6]" />
+              <span className="text-[11px] font-bold tracking-wider text-slate-400 uppercase">
+                World-Class Amenities
+              </span>
+            </motion.div>
+            <h2 className="text-5xl lg:text-7xl font-semibold text-[#111827] tracking-tight">
+              The <span className="text-slate-300 font-light italic">Art</span>{" "}
+              of Living
+            </h2>
+          </div>
+          <p className="text-slate-500 text-lg font-light max-w-sm border-l border-slate-200 pl-6 hidden lg:block">
+            Every detail is meticulously crafted to ensure your stay is as
+            effortless as it is beautiful.
+          </p>
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-4 h-200 lg:h-150">
+        <div className="flex flex-col lg:flex-row gap-4 h-175 lg:h-137.5">
           {services.map((service, index) => {
             const isHovered = hoveredIndex === index;
 
@@ -71,51 +74,55 @@ export function PremiumServices() {
               <motion.div
                 key={index}
                 onMouseEnter={() => setHoveredIndex(index)}
-                className="relative overflow-hidden rounded-4xl cursor-pointer bg-[#2D3142]"
-                initial={false}
+                className="relative overflow-hidden rounded-[2.5rem] cursor-pointer bg-slate-200 shadow-sm"
                 animate={{
-                  flex: isHovered ? 4 : 1,
+                  flex: isHovered ? 3.5 : 1,
                 }}
                 transition={{
-                  duration: 0.7,
-                  ease: [0.22, 1, 0.36, 1],
+                  duration: 0.8,
+                  ease: [0.16, 1, 0.3, 1],
                 }}
               >
                 <motion.div
                   className="absolute inset-0 bg-cover bg-center"
                   style={{ backgroundImage: `url('${service.image}')` }}
-                  animate={{ scale: isHovered ? 1.05 : 1 }}
-                  transition={{ duration: 0.8 }}
+                  animate={{
+                    scale: isHovered ? 1.05 : 1.15,
+                    filter: isHovered ? "grayscale(0%)" : "grayscale(30%)",
+                  }}
+                  transition={{ duration: 1.2 }}
                 />
 
                 <div
-                  className={`absolute inset-0 transition-opacity duration-700 ${
-                    isHovered ? "bg-[#2D3142]/60" : "bg-[#2D3142]/40"
+                  className={`absolute inset-0 transition-opacity duration-1000 ${
+                    isHovered
+                      ? "bg-linear-to-t from-[#111827]/90 via-[#111827]/20 to-transparent"
+                      : "bg-[#111827]/40"
                   }`}
                 />
 
-                <div className="absolute inset-0 p-8 flex flex-col justify-end text-[#EAE8FF]">
+                <div className="absolute inset-0 p-8 lg:p-10 flex flex-col justify-end text-white">
                   <AnimatePresence mode="wait">
                     {isHovered ? (
                       <motion.div
                         key="active"
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: -10 }}
-                        transition={{ duration: 0.4 }}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 10 }}
+                        transition={{ duration: 0.5, delay: 0.1 }}
                         className="max-w-md"
                       >
-                        <span className="text-[11px] font-bold tracking-[0.2em] text-[#B0D7FF] uppercase mb-2 block">
-                          Featured
+                        <span className="text-[10px] font-bold tracking-[0.2em] text-[#3B82F6] uppercase mb-3 block">
+                          {service.tag}
                         </span>
-                        <h3 className="text-3xl font-bold mb-4 tracking-tight">
+                        <h3 className="text-3xl lg:text-4xl font-semibold mb-4 tracking-tight">
                           {service.title}
                         </h3>
-                        <p className="text-[#EAE8FF]/80 leading-relaxed mb-8 text-lg">
+                        <p className="text-white/70 font-light leading-relaxed mb-8 text-lg">
                           {service.description}
                         </p>
-                        <button className="group flex items-center gap-3 bg-[#EAE8FF] text-[#2D3142] px-8 py-4 rounded-full font-bold hover:bg-[#B0D7FF] transition-all">
-                          Learn More
+                        <button className="group flex items-center gap-3 bg-white text-[#111827] px-8 py-4 rounded-2xl font-semibold hover:bg-[#3B82F6] hover:text-white transition-all">
+                          Discover More
                           <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                         </button>
                       </motion.div>
@@ -123,23 +130,16 @@ export function PremiumServices() {
                       <motion.div
                         key="collapsed"
                         initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
+                        animate={{ opacity: 0.6 }}
                         className="h-full flex items-center justify-center lg:justify-start"
                       >
-                        <h3 className="text-xl font-bold whitespace-nowrap lg:-rotate-90 origin-center tracking-tighter opacity-70 group-hover:opacity-100 transition-opacity">
+                        <h3 className="text-xl font-medium lg:-rotate-90 origin-center tracking-tight whitespace-nowrap">
                           {service.title}
                         </h3>
                       </motion.div>
                     )}
                   </AnimatePresence>
                 </div>
-
-                {isHovered && (
-                  <motion.div
-                    layoutId="glow"
-                    className="absolute inset-0 border-2 border-[#B0D7FF]/30 rounded-4xl pointer-events-none"
-                  />
-                )}
               </motion.div>
             );
           })}
