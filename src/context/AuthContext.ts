@@ -1,10 +1,10 @@
 import { createContext } from "react";
-import type { Users } from "../data/mockData";
+import type { User } from "../data/mockData";
 
 export type LoginResult = { success: true; role: string } | { success: false };
 
 type AuthContextType = {
-  user: Users | null;
+  user: User | null;
   login: (email: string, password: string) => LoginResult;
   logout: () => void;
 };

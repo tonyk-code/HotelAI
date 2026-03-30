@@ -11,11 +11,14 @@ import { rooms, events } from "../../data/mockData";
 import Card from "../../components/ui/Card";
 import ActionButton from "../../components/ui/ActionButton";
 import { SectionHeader } from "../../components/ui/SectionHeader";
+import { useAuth } from "../../hooks/customhooks/useAuth";
 
 export function Home() {
   const navigate = useNavigate();
   const recommendedRooms = rooms.slice(0, 2);
   const upcomingEvents = events.slice(0, 2);
+  const {user} = useAuth()
+
 
   return (
     <div className="min-h-screen  pb-12 p-6  md:p-10">
@@ -32,7 +35,7 @@ export function Home() {
           </p>
           <h1 className="text-4xl md:text-5xl font-light tracking-tight mb-2">
             Welcome back,{" "}
-            <span className="font-semibold text-[#3B82F6]">Sarah</span>
+            <span className="font-semibold text-[#3B82F6]">{user?.name}</span>
           </h1>
           <p className="text-lg font-light opacity-90 max-w-md leading-relaxed">
             Your sanctuary in the heart of the city is ready for your arrival.

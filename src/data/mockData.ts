@@ -26,21 +26,53 @@ export interface Service {
   icon: string;
 }
 
-export interface Users {
+export interface User {
   id: number;
   email: string;
   password: string;
-  role: string;
+  role: "guest" | "manager";
   name: string;
+
+  phone?: string;
+  avatar?: string;
+
+  preferences?: {
+    roomType?: string;
+    bedType?: string;
+    notes?: string;
+  };
+
+  bookings?: {
+    id: number;
+    room: string;
+    checkIn: string;
+    checkOut: string;
+    status: "active" | "completed";
+  }[];
 }
 
-export const users = [
+export const users: User[] = [
   {
     id: 1,
     email: "guest@test.com",
     password: "1234",
     role: "guest",
     name: "Guest User",
+    phone: "+251900000000",
+    preferences: {
+      roomType: "Quiet room",
+      bedType: "King bed",
+      notes: "Prefers upper floors",
+    },
+    bookings: [
+      {
+        id: 1,
+        room: "Ocean View Suite",
+        checkIn: "2026-03-20",
+        checkOut: "2026-03-27",
+        status: "active",
+      },
+    ],
   },
   {
     id: 2,

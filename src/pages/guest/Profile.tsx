@@ -5,13 +5,15 @@ import {
   Heart,
   Eye,
   Building,
-  CreditCard,
   ChevronRight,
 } from "lucide-react";
 import Card from "../../components/ui/Card";
 import InfoTile from "../../components/ui/InfoTile";
+import { useAuth } from "../../hooks/customhooks/useAuth";
 
 export function Profile() {
+  const { user , logout } = useAuth();
+
   return (
     <div className="min-h-screen pb-20">
       {/* Header Section */}
@@ -43,11 +45,9 @@ export function Profile() {
 
                 <div className="text-center md:text-left">
                   <h2 className="text-3xl font-bold text-[#1E3A8A]">
-                    Sarah Mitchell
+                    {user?.name}
                   </h2>
-                  <p className="text-slate-400 font-medium">
-                    Gold Status Member • sarah.m@luxe.com
-                  </p>
+                  <p className="text-slate-400 font-medium">{user?.email}</p>
                   <button className="mt-4 px-6 py-2 bg-slate-50 text-[#1E3A8A] text-xs font-bold rounded-full border border-slate-100 hover:bg-[#1E3A8A] hover:text-white transition-all">
                     Edit Profile
                   </button>
@@ -70,12 +70,19 @@ export function Profile() {
                   label="Location"
                   value="Grand Luxe Hotel, Mauritius"
                 />
+                <InfoTile icon={User} label="Email" value={user!.email} />
                 <InfoTile
-                  icon={CreditCard}
-                  label="Payment Method"
-                  value="Visa ending in 8842"
+                  icon={MapPin}
+                  label="Phone"
+                  value={user?.phone || "Not provided"}
                 />
               </div>
+              <button
+                onClick={logout}
+                className="mt-4 px-6 py-2 bg-red-50 text-red-600 text-xs font-bold rounded-full border border-red-100 hover:bg-red-600 hover:text-white transition-all"
+              >
+                Logout
+              </button>
             </Card>
 
             {/* Preferences Section */}
