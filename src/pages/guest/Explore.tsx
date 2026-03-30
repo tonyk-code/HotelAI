@@ -1,14 +1,33 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import { rooms } from "../../data/mockData";
 import { Star, SlidersHorizontal, Search } from "lucide-react";
 import Card from "../../components/ui/Card";
 import FilterChip from "../../components/ui/FilterChip";
+import useRooms from "../../hooks/query/useRooms";
+import { QueryError } from "../../components/ui/QueryError";
+import { RoomSkeleton } from "../../components/ui/RoomSkeleton";
 
 export function Explore() {
   const navigate = useNavigate();
   const [priceFilter, setPriceFilter] = useState<string>("all");
   const [typeFilter, setTypeFilter] = useState<string>("all");
+
+  const {
+    data: rooms = [],
+    isLoading,
+    isError,
+    error,
+    refetch,
+    isFetching,
+  } = useRooms();
+
+  if (isError) {
+    return (
+      <div className="max-w-7xl mx-auto px-6 py-12">
+        <QueryError error={error} refetch={refetch} isRefetching={isFetching} />
+      </div>
+    );
+  }
 
   const filteredRooms = rooms.filter((room) => {
     if (priceFilter !== "all") {
@@ -24,8 +43,8 @@ export function Explore() {
   });
 
   return (
-    <div className="min-h-screen  pb-20">
-      {/* Refined Header */}
+    <div className="min-h-screen pb-20">
+      {/* --- Header Section --- */}
       <div className="px-6 md:px-12 py-16 max-w-(screen-2xl) mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
           <div className="space-y-2">
@@ -40,11 +59,13 @@ export function Explore() {
 
           <div className="flex items-center gap-2 text-slate-400 text-sm font-medium">
             <SlidersHorizontal className="w-4 h-4" />
-            <span>{filteredRooms.length} rooms available</span>
+            <span>
+              {isLoading ? "..." : filteredRooms.length} rooms available
+            </span>
           </div>
         </div>
 
-        {/* Filter Section - Natural Spacing */}
+        {/* --- Filter Controls --- */}
         <div className="mt-12 flex flex-col gap-6 p-6 bg-white border border-slate-100 rounded-3xl shadow-sm">
           <div className="flex flex-col md:flex-row md:items-center gap-4">
             <span className="text-xs font-bold text-slate-400 uppercase tracking-tight w-20">
@@ -89,14 +110,22 @@ export function Explore() {
         </div>
       </div>
 
-      {/* Grid - Solid & Readable */}
+      {/* --- Main Content Area --- */}
       <div className="max-w-(screen-2xl) mx-auto px-6 md:px-12">
-        {filteredRooms.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-8">
+        {isLoading ? (
+          /* Loading State */
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[...Array(6)].map((_, i) => (
+              <RoomSkeleton key={i} />
+            ))}
+          </div>
+        ) : filteredRooms.length > 0 ? (
+          /* Data State */
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredRooms.map((room) => (
               <Card
                 key={room.id}
-                className="group flex flex-col overflow-hidden border-none shadow-md hover:shadow-2xl"
+                className="group flex flex-col overflow-hidden border-none shadow-md hover:shadow-2xl cursor-pointer"
                 onClick={() => navigate(`/app/explore/${room.id}`)}
               >
                 <div className="relative h-64 overflow-hidden">
@@ -149,6 +178,7 @@ export function Explore() {
             ))}
           </div>
         ) : (
+          /* Empty State */
           <div className="flex flex-col items-center justify-center py-40 border-2 border-dashed border-slate-100 rounded-[3rem]">
             <Search className="w-10 h-10 text-slate-200 mb-4" />
             <h3 className="text-xl font-semibold text-slate-400">
