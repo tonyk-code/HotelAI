@@ -17,29 +17,34 @@ import Inventory from "./pages/admin/Inventory";
 import Revenue from "./pages/admin/Revenue";
 import Feedback from "./pages/admin/Feedback";
 import Reports from "./pages/admin/Reports";
+import { ProtectedRoute } from "./routes/ProtectedRoute";
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<LandingPage />} />
       <Route path="/login" element={<LoginPage />} />
-      <Route path="/app" element={<GuestLayout />}>
-        <Route index element={<Home />} />
-        <Route path="explore" element={<Explore />} />
-        <Route path="explore/:id" element={<RoomDetails />} />
-        <Route path="services" element={<Services />} />
-        <Route path="events" element={<Events />} />
-        <Route path="chat" element={<Chat />} />
-        <Route path="profile" element={<Profile />} />
+      <Route element={<ProtectedRoute allowedRole="guest" />}>
+        <Route path="/app" element={<GuestLayout />}>
+          <Route index element={<Home />} />
+          <Route path="explore" element={<Explore />} />
+          <Route path="explore/:id" element={<RoomDetails />} />
+          <Route path="services" element={<Services />} />
+          <Route path="events" element={<Events />} />
+          <Route path="chat" element={<Chat />} />
+          <Route path="profile" element={<Profile />} />
+        </Route>
       </Route>
-      <Route path="/manager" element={<ManagerLayout />}>
-        <Route index element={<Dashboard />} />
-        <Route path="tasks" element={<Tasks />} />
-        <Route path="bookings" element={<Bookings />} />
-        <Route path="inventory" element={<Inventory />} />
-        <Route path="revenue" element={<Revenue />} />
-        <Route path="feedback" element={<Feedback />} />
-        <Route path="reports" element={<Reports />} />
+      <Route element={<ProtectedRoute allowedRole="manager" />}>
+        <Route path="/manager" element={<ManagerLayout />}>
+          <Route index element={<Dashboard />} />
+          <Route path="tasks" element={<Tasks />} />
+          <Route path="bookings" element={<Bookings />} />
+          <Route path="inventory" element={<Inventory />} />
+          <Route path="revenue" element={<Revenue />} />
+          <Route path="feedback" element={<Feedback />} />
+          <Route path="reports" element={<Reports />} />
+        </Route>
       </Route>
     </Routes>
   );

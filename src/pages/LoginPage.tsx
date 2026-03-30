@@ -1,15 +1,40 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ImageWithFallback } from "../components/ui/ImageWithFallback";
 import { ChevronRight, Lock, Mail } from "lucide-react";
+import { useAuth } from "../hooks/customhooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 export function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { login } = useAuth();
+  const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const res = login(email, password);
+
+    if (!res.success) {
+      alert("Invalid credentials");
+      return;
+    }
+
+    if (res.role === "guest") {
+      navigate("/app");
+    } else {
+      navigate("/manager");
+    }
     console.log("Login attempt with:", { email, password });
   };
+
+  const { user } = useAuth();
+
+  useEffect(() => {
+    if (user) {
+      if (user.role === "guest") navigate("/app");
+      else navigate("/manager");
+    }
+  }, [user,navigate]);
 
   return (
     <div className="min-h-screen flex flex-col lg:flex-row bg-[#F8FAFC] antialiased">
