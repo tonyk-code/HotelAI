@@ -12,6 +12,8 @@ import {
   Bell,
   ChevronDown,
 } from "lucide-react";
+import { useAuth } from "../../hooks/customhooks/useAuth";
+import { getInitials } from "../../utils/getInitials";
 
 const navigation = [
   { name: "Dashboard", path: "/manager", icon: LayoutDashboard },
@@ -25,10 +27,12 @@ const navigation = [
 
 export function ManagerLayoutContent() {
   const { timeRange, setTimeRange } = useTimeFilter();
+  const { logout, user } = useAuth();
+  const abbreviation = getInitials(user!.name);
 
   return (
     <div className="flex h-screen bg-[#F8FAFC] text-[#111827]">
-      <aside className="w-64 bg-[#1E3A8A] flex flex-col shadow-xl">
+      <aside className="w-64 bg-[#1E3A8A] flex flex-col shadow-xl relative">
         <div className="p-8">
           <h1 className="text-white text-xl font-bold tracking-tight">
             AI Hospitality
@@ -38,11 +42,7 @@ export function ManagerLayoutContent() {
         <nav className="flex flex-col gap-2 px-4 py-6">
           {" "}
           {navigation.map((item) => (
-            <NavLink
-              key={item.path}
-              to={item.path}
-              end
-            >
+            <NavLink key={item.path} to={item.path} end>
               {({ isActive }) => (
                 <div
                   className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold transition-all duration-200 group ${
@@ -66,6 +66,12 @@ export function ManagerLayoutContent() {
             </NavLink>
           ))}
         </nav>
+        <button
+          onClick={logout}
+          className="absolute bottom-5 left-[50%] -translate-x-[50%] px-6 py-2 w-40 bg-red-50 text-red-600 text-xs font-bold rounded-full border-2 border-red-100 hover:bg-red-600 hover:text-white transition-all"
+        >
+          Logout
+        </button>
       </aside>
 
       <div className="flex-1 flex flex-col overflow-hidden">
@@ -96,11 +102,15 @@ export function ManagerLayoutContent() {
 
             <div className="flex items-center gap-3 pl-4 border-l border-slate-200">
               <div className="text-right hidden sm:block">
-                <p className="text-sm font-bold text-[#111827]">John Doe</p>
-                <p className="text-xs text-slate-500 font-medium">Manager</p>
+                <p className="text-sm font-bold text-[#111827] capitalize">
+                  {user?.name}
+                </p>
+                <p className="text-xs text-slate-500 font-medium capitalize">
+                  {user?.role}
+                </p>
               </div>
               <div className="w-10 h-10 bg-[#1E3A8A] rounded-full flex items-center justify-center text-white text-sm font-bold shadow-inner">
-                JD
+                {abbreviation}
               </div>
             </div>
           </div>
