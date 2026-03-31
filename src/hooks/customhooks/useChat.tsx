@@ -1,11 +1,16 @@
-// src/hooks/useChat.ts
-import { processChatMessage } from "../../api/chatservice"; 
+import { useMutation } from "@tanstack/react-query";
+import {
+  processChatMessage,
+  type ChatResponse,
+} from "../../api/chatservice"
+import type { Message } from "../../types/message";
 
 export const useChat = () => {
-  const send = async (message: string) => {
-    const result = await processChatMessage(message);
-    return result;
-  };
-
-  return { send };
+  return useMutation<
+    ChatResponse,
+    Error,
+    { message: string; history: Message[] }
+  >({
+    mutationFn: ({ message, history }) => processChatMessage(message, history),
+  });
 };

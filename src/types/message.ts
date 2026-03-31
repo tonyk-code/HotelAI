@@ -5,7 +5,7 @@ export type Message = {
   createdAt?: number;
   status?: "sending" | "sent" | "error";
   meta?: {
-    type?: "service" | "feedback" | "info" | "general" | undefined;
+    type?: string;
     action?: "CREATE_TASK" | "SEND_FEEDBACK" | undefined;
     payload?: any;
   };

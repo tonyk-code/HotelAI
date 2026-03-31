@@ -3,7 +3,6 @@ import { Sparkles, User, Bot, Paperclip, ArrowUp } from "lucide-react";
 import SuggestionChip from "../../components/ui/SuggestionChip";
 import type { Message } from "../../types/message";
 import { useChat } from "../../hooks/customhooks/useChat";
-import { label } from "framer-motion/client";
 
 const suggestionData = [
   {
@@ -25,57 +24,59 @@ const suggestionData = [
 ];
 
 export function Chat() {
-  const { send } = useChat();
+  const { mutateAsync: send, isPending } = useChat();
   const [messages, setMessages] = useState<Message[]>(() => {
     const saved = localStorage.getItem("luxe_chat_history");
     return saved
-      ? JSON.parse(saved)
+      ? (JSON.parse(saved) as Message[])
       : [
           {
             id: "1",
             text: "Welcome back. I'm your Luxe AI. How can I assist with your stay today?",
             sender: "ai",
+            createdAt: Date.now(),
           },
         ];
   });
 
   const [inputValue, setInputValue] = useState("");
-  const [isThinking, setIsThinking] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     localStorage.setItem("luxe_chat_history", JSON.stringify(messages));
     if (scrollRef.current)
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
-  }, [messages, isThinking]);
+  }, [messages]);
 
-  const handleSendMessage = (textOverride?: string) => {
+  const handleSendMessage = async (textOverride?: string) => {
     const text = textOverride || inputValue;
-    if (!text.trim() || isThinking) return;
+    if (!text.trim() || isPending) return;
 
-    const userMsg = {
+    const userMsg: Message = {
       id: crypto.randomUUID(),
       text,
-      sender: "user" as const,
-      createdAt: Date.now(),
+      sender: "user",
+      createdAt: new Date().getTime(),
     };
+
     setMessages((prev) => [...prev, userMsg]);
     setInputValue("");
-    setIsThinking(true);
 
-    setTimeout(async () => {
-      const result = await send(text);
+    try {
+      const result = await send({
+        message: text,
+        history: [...messages, userMsg], // 🔥 send context
+      });
 
       const aiMsg: Message = {
-        id: (Date.now() + 1).toString(),
+        id: crypto.randomUUID(),
         text: result.reply,
         sender: "ai",
-        createdAt: Date.now(),
+        createdAt: new Date().getTime(),
         meta: result.meta,
       };
 
       setMessages((prev) => [...prev, aiMsg]);
-      setIsThinking(false);
 
       if (result.meta?.action === "CREATE_TASK") {
         console.log("Task sent to manager:", result.meta.payload);
@@ -84,12 +85,27 @@ export function Chat() {
       if (result.meta?.action === "SEND_FEEDBACK") {
         console.log("Feedback stored:", result.meta.payload);
       }
-    }, 1500);
+    } catch (err) {
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: crypto.randomUUID(),
+          text: "Something went wrong. Try again.",
+          sender: "ai",
+          createdAt: Date.now(),
+        },
+      ]);
+    }
   };
 
   const clearHistory = () => {
-    const initial = [
-      { id: "1", text: "Chat cleared. How can I help?", sender: "ai" as const },
+    const initial: Message[] = [
+      {
+        id: "1",
+        text: "Chat cleared. How can I help?",
+        sender: "ai",
+        createdAt: Date.now(),
+      },
     ];
     setMessages(initial);
     localStorage.removeItem("luxe_chat_history");
@@ -154,7 +170,7 @@ export function Chat() {
             </div>
           ))}
 
-          {isThinking && (
+          {isPending && (
             <div className="flex gap-4 animate-in fade-in">
               <div className="w-8 h-8 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center shrink-0">
                 <Bot className="w-4 h-4 text-[#3B82F6]" />
@@ -174,7 +190,7 @@ export function Chat() {
           <div className="flex gap-2 overflow-x-auto no-scrollbar pb-1">
             {suggestionData.map((s, i) => (
               <SuggestionChip
-                key={String(i) + label}
+                key={s.label + i}
                 label={s.label}
                 onClick={() => handleSendMessage(s.message)}
               />
@@ -191,11 +207,11 @@ export function Chat() {
               onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
               placeholder="Message Luxe AI..."
               className="flex-1 bg-transparent border-none focus:outline-none text-[14px] px-2 text-slate-700 placeholder:text-slate-300"
-              disabled={isThinking}
+              disabled={isPending}
             />
             <button
               onClick={() => handleSendMessage()}
-              disabled={!inputValue.trim() || isThinking}
+              disabled={!inputValue.trim() || isPending}
               className="w-10 h-10 bg-[#1E3A8A] text-white rounded-xl flex items-center justify-center transition-all hover:bg-[#3B82F6] active:scale-95 disabled:bg-slate-100 disabled:text-slate-300"
             >
               <ArrowUp className="w-5 h-5" />
