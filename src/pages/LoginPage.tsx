@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { ImageWithFallback } from "../components/ui/ImageWithFallback";
 import { ChevronRight, Lock, Mail } from "lucide-react";
 import { useAuth } from "../hooks/customhooks/useAuth";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export function LoginPage() {
   const [email, setEmail] = useState("");
@@ -139,12 +139,11 @@ export function LoginPage() {
           <footer className="pt-4 text-center">
             <p className="text-sm text-[#6B7280]">
               New to the platform?{" "}
-              <a
-                href="#"
+              <Link to="/sign-up"
                 className="text-[#111827] font-bold hover:text-[#3B82F6] transition-colors ml-1"
               >
                 Create an account
-              </a>
+              </Link>
             </p>
           </footer>
         </div>

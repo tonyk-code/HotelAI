@@ -19,12 +19,14 @@ import Feedback from "./pages/admin/Feedback";
 import Reports from "./pages/admin/Reports";
 import { ProtectedRoute } from "./routes/ProtectedRoute";
 import AIPendingRequests from "./pages/admin/AIPendingRequests";
+import { SignupPage } from "./pages/SignupPage";
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<LandingPage />} />
       <Route path="/login" element={<LoginPage />} />
+      <Route path="/sign-up" element={<SignupPage />} />
       <Route element={<ProtectedRoute allowedRole="guest" />}>
         <Route path="/app" element={<GuestLayout />}>
           <Route index element={<Home />} />
