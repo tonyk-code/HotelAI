@@ -11,6 +11,7 @@ import {
   FileText,
   Bell,
   ChevronDown,
+  MessageSquareOff,
 } from "lucide-react";
 import { useAuth } from "../../hooks/customhooks/useAuth";
 import { getInitials } from "../../utils/getInitials";
@@ -23,6 +24,7 @@ const navigation = [
   { name: "Revenue", path: "/manager/revenue", icon: DollarSign },
   { name: "Feedback", path: "/manager/feedback", icon: MessageSquare },
   { name: "Reports", path: "/manager/reports", icon: FileText },
+  { name: "AI Requests", path: "/manager/ai-requests", icon: MessageSquareOff },
 ];
 
 export function ManagerLayoutContent() {

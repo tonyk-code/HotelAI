@@ -18,6 +18,7 @@ import Revenue from "./pages/admin/Revenue";
 import Feedback from "./pages/admin/Feedback";
 import Reports from "./pages/admin/Reports";
 import { ProtectedRoute } from "./routes/ProtectedRoute";
+import AIPendingRequests from "./pages/admin/AIPendingRequests";
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
           <Route path="revenue" element={<Revenue />} />
           <Route path="feedback" element={<Feedback />} />
           <Route path="reports" element={<Reports />} />
+          <Route path="ai-requests" element={<AIPendingRequests />} />
         </Route>
       </Route>
     </Routes>
